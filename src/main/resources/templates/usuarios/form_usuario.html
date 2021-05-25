@@ -1,1 +1,26 @@
-<p>formulario de  usuario nuevo / modificado</p>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/css/login.css" th:href="@{/css/login.css}"  rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d25b889486.js" crossorigin="anonymous"></script>
+    <title>TP OO2 GRUPO 10</title>
+</head>
+<body>
+    <div class="contenedor">    
+        <div class="backButtonAlta">
+            <a th:href="@{/usuario/listar}"><i class="fas fa-arrow-left"></i></a>
+        </div>    
+        <div class="login">
+            <form action="#" th:action="@{/usuario/crear}" th:object="${usuario}" method="POST">
+                
+                <div class="input">
+                    <input type="text" th:field="*{nombre}" th:text="${nombre}" placeholder="Nombre" required="required" />
+                </div>
+              </form>
+        </div>
+    </div>
+</body>
+</html>

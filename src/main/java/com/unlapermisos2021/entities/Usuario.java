@@ -60,7 +60,6 @@ public class Usuario {
 	private UserRole rol;
 
 	public Usuario() {
-		super();
 	}
 
 	public Usuario(String nombre, String apellido, String email, String username, String password, String tipo_documento, String nro_documento,UserRole rol) {
