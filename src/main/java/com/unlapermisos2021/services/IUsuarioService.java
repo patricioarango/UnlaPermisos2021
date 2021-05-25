@@ -12,7 +12,7 @@ public interface IUsuarioService {
 
 	public UsuarioModel traerUsuarioYPerfilPorId(long id);
 
-	//public UsuarioModel traerUsuarioYPerfilPorUsername(String username);
+	public UsuarioModel traerUsuarioYPerfilPorUsername(String username);
 	
 	//public UsuarioModel traerUsuarioPorUsername(String username);
 	

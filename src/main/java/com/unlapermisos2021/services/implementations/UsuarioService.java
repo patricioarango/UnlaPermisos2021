@@ -22,5 +22,10 @@ public class UsuarioService implements IUsuarioService{
 		UsuarioModel usuario = userConverter.entityToModel(userRepo.findById(id));
 		return usuario;
 	}
+	@Override
+	public UsuarioModel traerUsuarioYPerfilPorUsername(String username){
+		UsuarioModel usuario = userConverter.entityToModel(userRepo.findByUsernameAndFetchPerfilEagerly(username));
+		return usuario;
+	}
 
 }

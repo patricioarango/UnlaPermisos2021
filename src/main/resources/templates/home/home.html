@@ -1,0 +1,59 @@
+  <!doctype html>
+  <html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <title>UnLa Permisos 2021</title>
+     <!-- Bootstrap core CSS -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/unlapermisos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+    <script src="/bootstrap/js/bootstrap.min.js" ></script>
+    <!-- Favicons -->
+    <link rel="icon" href="/images/favicon.ico">
+    <style>
+     </style>
+      
+    </head>
+   <body class="container"><br>
+<main>
+  <div class="container py-4">
+    <header class="pb-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <img src="/images/unla.jpeg" style="width:40px;margin:10px;">
+        <span class="fs-4">Unla Permisos TP 2021</span>
+      </a>
+    </header>
+    <div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold" th:text="${'Bienvenido, '+ usuario.nombre + ' ' + usuario.apellido + '!'}"></h1>
+        <p class="col-md-8 fs-4">El rol que ten&eacute;es asignado es: ROL.</p>
+        <a class="btn btn-primary btn-lg" role="button">Salir</a>
+      </div>
+    </div>
+
+    <div class="row align-items-md-stretch">
+      <div class="col-md-6">
+        <div class="h-100 p-5 text-white bg-dark rounded-3">
+          <h2>Listado de Usuarios</h2>
+          <p>Desde esta secci&oacute;n podr&aacuten;s crear, editar y borrar usuarios.</p>
+          <a class="btn btn-outline-light" role="button" href="/usuarios/listar">Ver Usuarios</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="h-100 p-5 bg-light border rounded-3">
+          <h2>Roles</h2>
+          <p>Desde esta secci&oacute;n podr&aacute;s crear, editar y borrar roles.</p>
+          <a class="btn btn-outline-secondary" role="button" href="/roles/listar">Ver Roles</a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="pt-3 mt-4 text-muted border-top">
+      &copy; 2021
+    </footer>
+  </div>
+</main>
+</body>
+</html>

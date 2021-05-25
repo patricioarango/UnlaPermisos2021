@@ -9,13 +9,12 @@
     <title>TP OO2 GRUPO 10</title>
 </head>
 <body>
-    <div class="contenedor">    
+    <div class="contenedor">   
         <div class="backButtonAlta">
             <a th:href="@{/usuario/listar}"><i class="fas fa-arrow-left"></i></a>
         </div>    
         <div class="login">
             <form action="#" th:action="@{/usuario/crear}" th:object="${usuario}" method="POST">
-                
                 <div class="input">
                     <input type="text" th:field="*{nombre}" th:text="${nombre}" placeholder="Nombre" required="required" />
                 </div>
