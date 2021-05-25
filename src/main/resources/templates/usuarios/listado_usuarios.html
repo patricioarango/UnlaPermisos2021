@@ -1,1 +1,33 @@
-<p>listado usuarios</p>
+   <div class="row" th:insert="fragments/header">
+   </div>
+   <br>
+   <div class="container">
+   	<div class="row">
+    <div class="col">
+        <h1>Listado de Usuarios</h1>
+        <hr>
+    </div>
+</div>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Nombre</th>
+			<th>Apellido</th>
+			<th>Usuario</th>
+			<th>Email</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>patricio</td>
+			<td>arango</td>
+			<td>admin</td>
+			<td>pato@pato.com</td>
+			<td><button type="button" class="btn btn-outline-primary">Editar</button>
+				<button type="button" class="btn btn-outline-danger">BORRAR</button></td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>
