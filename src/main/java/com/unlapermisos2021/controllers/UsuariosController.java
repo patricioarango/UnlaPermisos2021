@@ -45,6 +45,7 @@ public class UsuariosController {
 	public ModelAndView modificar(@PathVariable("id") long id) {
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.USUARIOS_FORM);
         UsuarioModel userModel =  userService.traerUsuarioYPerfilPorId(id);
+        userModel.setEnabled(true);
         mav.addObject("usuario", userModel);
         return mav;
 	}

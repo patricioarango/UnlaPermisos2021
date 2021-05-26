@@ -62,12 +62,12 @@ public class Usuario {
 	public Usuario() {
 	}
 
-	public Usuario(Long id, String nombre, String apellido, String email, String username, String password, String tipo_documento, String nro_documento,UserRole rol) {
+	public Usuario(Long id, String nombre, String apellido, String email, String username, String password, String tipo_documento, String nro_documento,UserRole rol, boolean enabled) {
 		this.setId(getId());
 		this.setApellido(apellido);
 		this.setEmail(email);
 		this.setNombre(nombre);
-		this.setEnabled(true);
+		this.setEnabled(enabled);
 		this.setUsername(username);
 		this.setPassword(password);
 		this.setRol(rol);

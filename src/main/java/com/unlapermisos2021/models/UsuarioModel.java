@@ -20,12 +20,12 @@ public class UsuarioModel {
 	
 	public UsuarioModel() {}
 	
-	public UsuarioModel(long Id, String nombre, String apellido, String email, String username,String password,String tipo_documento, String nro_documento, UserRole rol) {
+	public UsuarioModel(long Id, String nombre, String apellido, String email, String username,String password,String tipo_documento, String nro_documento, UserRole rol,boolean enabled) {
 		this.setId(Id);
 		this.setApellido(apellido);
 		this.setEmail(email);
 		this.setNombre(nombre);
-		this.setEnabled(true);
+		this.setEnabled(enabled);
 		this.setPassword(password);
 		this.setUsername(username);
 		this.setRol(rol);

@@ -1,5 +1,7 @@
 package com.unlapermisos2021.controllers;
 
+import java.time.LocalDateTime;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +57,14 @@ public class RolesController {
 	@PostMapping("/guardar")
     public String guardar(@ModelAttribute("rol") UserRoleModel rol){
 		rol.setEnabled(true);
+		//TODO si el id es 0, es un create, set createdAt
+		rol.setUpdatedat(LocalDateTime.now());
 		rolService.updateRol(rol);
 		return "redirect:/roles/listar";
     }
+	
+	@GetMapping("/exportarpdf")
+	public void exportarpdf() {
+		
+	}
 }

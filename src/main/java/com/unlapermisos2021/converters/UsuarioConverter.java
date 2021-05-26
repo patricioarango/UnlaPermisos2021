@@ -13,10 +13,10 @@ public class UsuarioConverter {
 	private UserRoleConverter userRoleConverter;
 	
 	public UsuarioModel entityToModel(Usuario user) {
-		return new UsuarioModel(user.getId(),user.getNombre(), user.getApellido(), user.getEmail(), user.getUsername(), user.getPassword(),user.getTipo_documento(), user.getNro_documento(), user.getRol());
+		return new UsuarioModel(user.getId(),user.getNombre(), user.getApellido(), user.getEmail(), user.getUsername(), user.getPassword(),user.getTipo_documento(), user.getNro_documento(), user.getRol(), user.isEnabled());
 	}
 
 	public Usuario modeltoEntity(UsuarioModel user) {
-		return new Usuario(user.getId(),user.getNombre(), user.getApellido(), user.getEmail(), user.getUsername(), user.getPassword(),user.getTipo_documento(), user.getNro_documento(), user.getRol());
+		return new Usuario(user.getId(),user.getNombre(), user.getApellido(), user.getEmail(), user.getUsername(), user.getPassword(),user.getTipo_documento(), user.getNro_documento(), user.getRol(),user.isEnabled());
 	}
 }
