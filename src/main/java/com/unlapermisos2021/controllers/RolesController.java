@@ -54,6 +54,7 @@ public class RolesController {
 	
 	@PostMapping("/guardar")
     public String guardar(@ModelAttribute("rol") UserRoleModel rol){
+		rol.setEnabled(true);
 		rolService.updateRol(rol);
 		return "redirect:/roles/listar";
     }

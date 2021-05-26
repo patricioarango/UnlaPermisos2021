@@ -42,10 +42,10 @@ public class UserRole {
 	public UserRole() {
 	}
 
-	public UserRole(long Id, String role) {
+	public UserRole(long Id, String role,boolean enabled) {
 		this.setId(Id);
 		this.setRole(role);
-		this.setEnabled(true);
+		this.setEnabled(enabled);
 		this.setUpdatedAt(LocalDateTime.now());
 	}
 

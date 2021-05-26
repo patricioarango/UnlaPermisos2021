@@ -10,12 +10,11 @@ public class UserRoleModel {
 	private boolean enabled;
 	
 	public UserRoleModel() {}
-	public UserRoleModel(long id, String role) {
+	public UserRoleModel(long id, String role,boolean enabled) {
 		this.setId(id);
 		this.setRole(role);
-		this.setEnabled(true);
-		this.setCreatedat(LocalDateTime.now());
 		this.setUpdatedat(LocalDateTime.now());
+		this.setEnabled(enabled);
 	}
 	
 	public long getId() {
