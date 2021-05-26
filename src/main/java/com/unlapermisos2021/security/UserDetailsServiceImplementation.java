@@ -30,12 +30,12 @@ public class UserDetailsServiceImplementation implements UserDetailsService{
 
 		UserDetails usuario = (UserDetails) new User("patricio", "passroed", grantList);
 		return usuario;*/
-		Usuario user =  userRepository.findById(3);
+		Usuario user =  userRepository.findByUsername(username);
 		UserBuilder builder = null;
 		builder = User.withUsername(username);
 		builder.disabled(false);
 		builder.password(user.getPassword());
-		builder.authorities(new SimpleGrantedAuthority("ADMINISTRADOR"));
+		builder.authorities(new SimpleGrantedAuthority(user.getRol().getRole()));
 		return builder.build();
 	}
 }

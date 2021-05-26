@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,13 +34,19 @@ public class RolesController {
 	private UserRoleConverter rolConverter;
 	
 	@GetMapping("/listar")
-	public ModelAndView listar(Model model,HttpSession session) {
-		session.setAttribute("SessionRol", "ADMINISTRADOR");
+	public ModelAndView listar(Authentication auth,Model model,HttpSession session) {
+		if(auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMINISTRADOR"))) {
+			session.setAttribute("SessionRol", "ADMINISTRADOR");
+		}
+		if(auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("AUDITOR"))) {
+			session.setAttribute("SessionRol", "AUDITOR");
+		}
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.ROLES_LISTADO);
 		model.addAttribute("roles", rolService.getAllEnabled(1));
         return mav;
 	}
 	
+	@Secured("ROLE_ADMINISTADOR")
 	@GetMapping("/nuevo")
 	public ModelAndView nuevo(Model model) {
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.ROLES_FORM);
@@ -46,6 +55,7 @@ public class RolesController {
         return mav;
 	}
 
+	@Secured("ROLE_ADMINISTADOR")
 	@GetMapping("/modificar/{id}")
     public ModelAndView modificar(@PathVariable("id") long id){
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.ROLES_FORM);
@@ -54,6 +64,7 @@ public class RolesController {
         return mav;
     }
 	
+	@Secured("ROLE_ADMINISTADOR")
 	@GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable("id") long id){
 		UserRole rol =  rolService.findById(id);
@@ -62,6 +73,7 @@ public class RolesController {
 		return "redirect:/roles/listar";
     }
 	
+	@Secured("ROLE_ADMINISTADOR")
 	@PostMapping("/guardar")
     public String guardar(@ModelAttribute("rol") UserRoleModel rol){
 		rol.setEnabled(true);
@@ -71,6 +83,7 @@ public class RolesController {
 		return "redirect:/roles/listar";
     }
 	
+	@Secured("ROLE_AUDITOR")
 	@GetMapping("/exportarpdf")
 	public void exportarpdf() {
 		

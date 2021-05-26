@@ -59,17 +59,17 @@
     <div class="row g-0">
       <div class="col-12 col-md-6">
       <main class="form-signin text-center">
-        <form action="/login" role="form" method="POST">
+        <form action="/login" role="form" method="post">
           <img class="mb-4" src="/images/unla.jpeg" alt="" width="72" height="72">
           <h1 class="h3 mb-3 fw-normal">Ingresar</h1>
           <div th:if="${param.error}" class="alerta">Credenciales incorrectas.</div>
           <div class="form-floating">
             <input type="text" name="username" class="form-control" id="username" placeholder="Usuario" required>
-            <label for="floatingInput">Usuario</label>
+            <label for="username">Usuario</label>
           </div>
           <div class="form-floating">
             <input type="password" name="password" class="form-control" id="password" placeholder="Contrase&ntilde;a" required>
-            <label for="floatingPassword">Contrase&ntilde;a</label>
+            <label for="password">Contrase&ntilde;a</label>
           </div>
           <button class="w-100 btn btn-lg btn-primary" type="submit">ENTRAR</button>
           <p class="mt-5 mb-3 text-muted">&copy;2021</p>
