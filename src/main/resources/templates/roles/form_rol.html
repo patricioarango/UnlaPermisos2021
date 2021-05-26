@@ -9,6 +9,7 @@
 <form class="form" method="post" th:action="@{/roles/guardar}" th:object="${rol}" role="form" autocomplete="off">
   <div class="mb-3">
     <label for="nombre" class="form-label">Nombre</label>
+    <input type="hidden" name="id" th:field="${rol.id}">
     <input type="text" name="role" th:value="${rol.role}" class="form-control" id="nombre" required>
   </div>
   <div class="text-center">

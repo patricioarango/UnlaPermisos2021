@@ -13,7 +13,7 @@ public interface IUsuarioService {
 	
 	public List<UsuarioModel> getAllEnabled(int enabled);
 		
-	public UsuarioModel updateUser(Usuario userModel);
+	public UsuarioModel updateUser(UsuarioModel userModel);
 
 	public UsuarioModel traerUsuarioYPerfilPorId(long id);
 

@@ -25,10 +25,10 @@ import com.unlapermisos2021.services.IRolService;
 public class RolesController {
 	
 	@Autowired
-	IRolService rolService;
+	private IRolService rolService;
 	
 	@Autowired
-	UserRoleConverter rolConverter;
+	private UserRoleConverter rolConverter;
 	
 	@GetMapping("/listar")
 	public ModelAndView listar(Model model,HttpSession session) {
@@ -45,6 +45,14 @@ public class RolesController {
         mav.addObject("rol", rolModel);
         return mav;
 	}
+
+	@GetMapping("/modificar/{id}")
+    public ModelAndView modificar(@PathVariable("id") long id){
+		ModelAndView mav = new ModelAndView(ViewRoutesHelper.ROLES_FORM);
+		UserRole rolModel =  rolService.findById(id);
+		mav.addObject("rol", rolModel);
+        return mav;
+    }
 	
 	@GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable("id") long id){

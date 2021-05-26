@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.unlapermisos2021.converters.UserRoleConverter;
 import com.unlapermisos2021.entities.UserRole;
-import com.unlapermisos2021.entities.Usuario;
 import com.unlapermisos2021.models.UserRoleModel;
-import com.unlapermisos2021.models.UsuarioModel;
 import com.unlapermisos2021.repositories.IRolRepository;
 import com.unlapermisos2021.services.IRolService;
 

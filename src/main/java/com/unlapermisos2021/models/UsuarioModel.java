@@ -11,7 +11,8 @@ public class UsuarioModel {
 	private String username;
 	private String password;
 	private String email;
-	private UserRole rol;
+	private UserRoleModel rol;
+	private int id_rol;
 	private String tipo_documento;
 	private String nro_documento;
 	private LocalDateTime createdat;
@@ -20,7 +21,7 @@ public class UsuarioModel {
 	
 	public UsuarioModel() {}
 	
-	public UsuarioModel(long Id, String nombre, String apellido, String email, String username,String password,String tipo_documento, String nro_documento, UserRole rol,boolean enabled) {
+	public UsuarioModel(long Id, String nombre, String apellido, String email, String username,String password,String tipo_documento, String nro_documento, UserRoleModel rol,boolean enabled) {
 		this.setId(Id);
 		this.setApellido(apellido);
 		this.setEmail(email);
@@ -38,7 +39,7 @@ public class UsuarioModel {
 	public long getId() {
 		return id;
 	}
-	protected void setId(long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getApellido() {
@@ -71,10 +72,10 @@ public class UsuarioModel {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public UserRole getRol() {
+	public UserRoleModel getRol() {
 		return rol;
 	}
-	public void setRol(UserRole rol) {
+	public void setRol(UserRoleModel rol) {
 		this.rol = rol;
 	}
 	public String getTipo_documento() {
@@ -110,7 +111,7 @@ public class UsuarioModel {
 	
 	@Override
 	public String toString() {
-		return "idUsuario: " + id + "\napellido: " + apellido + "\nnombre: " + nombre + "\ndni: " + nro_documento + "\nenabled: " + enabled
+		return "id: " + id + "\napellido: " + apellido + "\nnombre: " + nombre + "\ndni: " + nro_documento + "\nenabled: " + enabled
 				+"\nusername: " + username +  "\npassword: " + password;
 	}
 }

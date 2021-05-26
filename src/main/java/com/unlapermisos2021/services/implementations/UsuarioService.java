@@ -50,8 +50,8 @@ public class UsuarioService implements IUsuarioService{
 		return usuarios;
 	}
 	@Override
-	public UsuarioModel updateUser(Usuario usuario){
-		Usuario user = userRepo.save(usuario);
+	public UsuarioModel updateUser(UsuarioModel usuario){
+		Usuario user = userRepo.save(userConverter.modeltoEntity(usuario));
 		return userConverter.entityToModel(user);
 	}
 	

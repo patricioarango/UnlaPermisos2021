@@ -10,6 +10,7 @@ public class UserRoleModel {
 	private boolean enabled;
 	
 	public UserRoleModel() {}
+	
 	public UserRoleModel(long id, String role,boolean enabled) {
 		this.setId(id);
 		this.setRole(role);
@@ -21,7 +22,7 @@ public class UserRoleModel {
 		return id;
 	}
 
-	protected void setId(long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
