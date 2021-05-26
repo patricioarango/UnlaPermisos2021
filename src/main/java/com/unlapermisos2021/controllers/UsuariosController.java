@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.unlapermisos2021.converters.UsuarioConverter;
+import com.unlapermisos2021.entities.Tipo_documento;
 import com.unlapermisos2021.entities.Usuario;
 import com.unlapermisos2021.helpers.ViewRoutesHelper;
 import com.unlapermisos2021.models.UserRoleModel;

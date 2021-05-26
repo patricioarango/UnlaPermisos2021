@@ -2,6 +2,7 @@ package com.unlapermisos2021.models;
 
 import java.time.LocalDateTime;
 
+import com.unlapermisos2021.entities.Tipo_documento;
 import com.unlapermisos2021.entities.UserRole;
 
 public class UsuarioModel {
@@ -12,7 +13,7 @@ public class UsuarioModel {
 	private String password;
 	private String email;
 	private UserRoleModel rol;
-	private String tipo_documento;
+	private Tipo_documento tipo_documento;
 	private String nro_documento;
 	private LocalDateTime createdat;
 	private LocalDateTime updatedad;
@@ -20,7 +21,7 @@ public class UsuarioModel {
 	
 	public UsuarioModel() {}
 	
-	public UsuarioModel(long Id, String nombre, String apellido, String email, String username,String password,String tipo_documento, String nro_documento, UserRoleModel rol,boolean enabled) {
+	public UsuarioModel(long Id, String nombre, String apellido, String email, String username,String password,Tipo_documento tipo_documento, String nro_documento, UserRoleModel rol,boolean enabled) {
 		this.setId(Id);
 		this.setApellido(apellido);
 		this.setEmail(email);
@@ -77,10 +78,10 @@ public class UsuarioModel {
 	public void setRol(UserRoleModel rol) {
 		this.rol = rol;
 	}
-	public String getTipo_documento() {
+	public Tipo_documento getTipo_documento() {
 		return tipo_documento;
 	}
-	public void setTipo_documento(String tipo_documento) {
+	public void setTipo_documento(Tipo_documento tipo_documento) {
 		this.tipo_documento = tipo_documento;
 	}
 	public String getNro_documento() {

@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,9 +40,11 @@ public class Usuario {
 	@Column(name = "apellido", nullable = false, length = 50)
 	private String apellido;
 	
-	@Column(name = "tipo_documento", nullable = false, length = 50)
-	private String tipo_documento;
-
+	/*@Column(name = "tipo_documento", nullable = false, length = 50)
+	private String tipo_documento;*/
+	@Enumerated(EnumType.STRING)
+	private Tipo_documento tipo_documento;
+	
 	@Column(name = "nro_documento", nullable = false, length = 50)
 	private String nro_documento;
 	
@@ -58,11 +62,11 @@ public class Usuario {
 	@ManyToOne
 	@JoinColumn(name="id_rol")
 	private UserRole rol;
-
+	
 	public Usuario() {
 	}
 
-	public Usuario(Long id, String nombre, String apellido, String email, String username, String password, String tipo_documento, String nro_documento,UserRole rol, boolean enabled) {
+	public Usuario(Long id, String nombre, String apellido, String email, String username, String password, Tipo_documento tipo_documento, String nro_documento,UserRole rol, boolean enabled) {
 		this.setId(id);
 		this.setApellido(apellido);
 		this.setEmail(email);
@@ -156,10 +160,10 @@ public class Usuario {
 	public void setRol(UserRole rol) {
 		this.rol = rol;
 	}
-	public String getTipo_documento() {
+	public Tipo_documento getTipo_documento() {
 		return tipo_documento;
 	}
-	public void setTipo_documento(String tipo_documento) {
+	public void setTipo_documento(Tipo_documento tipo_documento) {
 		this.tipo_documento = tipo_documento;
 	}
 	public String getNro_documento() {
