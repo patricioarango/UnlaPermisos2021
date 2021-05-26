@@ -11,6 +11,7 @@ import com.unlapermisos2021.entities.Usuario;
 import com.unlapermisos2021.models.UsuarioModel;
 import com.unlapermisos2021.repositories.IUsuarioRepository;
 import com.unlapermisos2021.services.IUsuarioService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
 public class UsuarioService implements IUsuarioService{
@@ -20,6 +21,9 @@ public class UsuarioService implements IUsuarioService{
 	
 	@Autowired
 	private UsuarioConverter userConverter;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEnconder;
 	
 	@Override
 	public UsuarioModel traerUsuarioYPerfilPorId(long id) {
@@ -51,6 +55,7 @@ public class UsuarioService implements IUsuarioService{
 	}
 	@Override
 	public UsuarioModel updateUser(UsuarioModel usuario){
+		usuario.setPassword(passwordEnconder.encode(usuario.getPassword()));
 		Usuario user = userRepo.save(userConverter.modeltoEntity(usuario));
 		return userConverter.entityToModel(user);
 	}
