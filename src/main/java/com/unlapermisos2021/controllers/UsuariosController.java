@@ -2,11 +2,16 @@ package com.unlapermisos2021.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import com.unlapermisos2021.converters.UsuarioConverter;
+import com.unlapermisos2021.entities.Usuario;
+import com.unlapermisos2021.helpers.ViewRoutesHelper;
 import com.unlapermisos2021.models.UsuarioModel;
 import com.unlapermisos2021.services.IUsuarioService;
 
@@ -16,10 +21,14 @@ public class UsuariosController {
 
 	@Autowired
 	private IUsuarioService userService;
+	@Autowired
+	private UsuarioConverter userConverter;
    
 	@GetMapping("/listar")
-	public String listar() {
-		return "usuarios/listado_usuarios";
+	public ModelAndView listar(Model model) {
+		ModelAndView mav = new ModelAndView(ViewRoutesHelper.USUARIOS_LISTADO);
+		model.addAttribute("usuarios", userService.getAllEnabled(1));
+        return mav;
 	}
 	
 	@GetMapping("/nuevo")
@@ -29,9 +38,20 @@ public class UsuariosController {
 	
 	@GetMapping("/modificar/{id}")
 	public ModelAndView modificar(@PathVariable("id") long id) {
-		ModelAndView mav = new ModelAndView("usuarios/form_usuario");
+		ModelAndView mav = new ModelAndView(ViewRoutesHelper.USUARIOS_FORM);
         UsuarioModel userModel =  userService.traerUsuarioYPerfilPorId(id);
         mav.addObject("usuario", userModel);
         return mav;
 	}
+	
+	@GetMapping("/eliminar/{id}")
+    public RedirectView eliminar(@PathVariable("id") long id){
+		UsuarioModel userModel =  userService.traerUsuarioYPerfilPorId(id);
+		
+		userModel.setNombre("nuevo ombre");
+		userModel.setUsername("nuevouseranem");
+		userModel.setEmail("nuevouseranem@email.com");
+		userService.updateUser(userModel);
+		return new RedirectView(ViewRoutesHelper.USUARIOS_LISTADO);
+    }
 }

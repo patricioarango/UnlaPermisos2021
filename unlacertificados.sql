@@ -69,3 +69,5 @@ CREATE TABLE `user` (
 /*Data for the table `user` */
 
 insert  into `user`(`id`,`apellido`,`nombre`,`username`,`email`,`id_rol`,`password`,`tipo_documento`,`nro_documento`,`createdat`,`updatedat`,`enabled`) values (3,'arango','patricio','admin','unla@unla.com',1,'$2a$10$Z4arYx02yCWGF9uscf0R3eqpMbhaA6tnkz2Bd2q58CzVV4xhMRMD2','DNI','20119234','2021-05-19 12:31:00','2021-05-19 12:31:00','');
+
+  insert  into `user`(`apellido`,`nombre`,`username`,`email`,`id_rol`,`password`,`tipo_documento`,`nro_documento`,`createdat`,`updatedat`,`enabled`) values ('arango','patricio23','admin23','unla23@unla.com',1,'$2a$10$23','DNI','2011923423','2021-05-19 12:31:00','2021-05-19 12:31:00','');

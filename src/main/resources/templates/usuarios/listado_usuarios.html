@@ -13,19 +13,23 @@
 		<tr>
 			<th>Nombre</th>
 			<th>Apellido</th>
+			<th>Nro. Documento</th>
 			<th>Usuario</th>
 			<th>Email</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>patricio</td>
-			<td>arango</td>
-			<td>admin</td>
-			<td>pato@pato.com</td>
-			<td><button type="button" class="btn btn-outline-primary">Editar</button>
-				<button type="button" class="btn btn-outline-danger">BORRAR</button></td>
+		<tr th:each="usuario:${usuarios}">
+  			<td th:text="${usuario.nombre}"></td>
+            <td th:text="${usuario.apellido}"></td>
+            <td th:text="${usuario.nro_documento}"></td>
+            <td th:text="${usuario.username}"></td>
+            <td th:text="${usuario.email}"></td>
+			<td>
+				<a th:href="@{/usuarios/modificar/}+${usuario.id}" href="" role="button" class="btn btn-outline-primary">EDITAR</a>
+				<a th:href="@{/usuarios/eliminar/}+${usuario.id}" href="" role="button" class="btn btn-outline-danger">BORRAR</a>
+			</td>
 		</tr>
 	</tbody>
 </table>

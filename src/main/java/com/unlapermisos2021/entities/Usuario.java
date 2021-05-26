@@ -62,7 +62,8 @@ public class Usuario {
 	public Usuario() {
 	}
 
-	public Usuario(String nombre, String apellido, String email, String username, String password, String tipo_documento, String nro_documento,UserRole rol) {
+	public Usuario(Long id, String nombre, String apellido, String email, String username, String password, String tipo_documento, String nro_documento,UserRole rol) {
+		this.setId(getId());
 		this.setApellido(apellido);
 		this.setEmail(email);
 		this.setNombre(nombre);
@@ -79,7 +80,7 @@ public class Usuario {
 		return id;
 	}
 
-	public void setId(long id) {
+	protected void setId(long id) {
 		this.id = id;
 	}
 
@@ -165,5 +166,10 @@ public class Usuario {
 	}
 	public void setNro_documento(String nro_documento) {
 		this.nro_documento = nro_documento;
+	}
+	
+	@Override
+	public String toString() {
+		return "Usuario [dni=" + nro_documento + "]";
 	}
 }

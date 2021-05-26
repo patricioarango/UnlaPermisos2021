@@ -20,7 +20,8 @@ public class UsuarioModel {
 	
 	public UsuarioModel() {}
 	
-	public UsuarioModel(String nombre, String apellido, String email, String username,String password,String tipo_documento, String nro_documento, UserRole rol) {
+	public UsuarioModel(long Id, String nombre, String apellido, String email, String username,String password,String tipo_documento, String nro_documento, UserRole rol) {
+		this.setId(Id);
 		this.setApellido(apellido);
 		this.setEmail(email);
 		this.setNombre(nombre);
@@ -107,4 +108,9 @@ public class UsuarioModel {
 		this.enabled = enabled;
 	}
 	
+	@Override
+	public String toString() {
+		return "idUsuario: " + id + "\napellido: " + apellido + "\nnombre: " + nombre + "\ndni: " + nro_documento + "\nenabled: " + enabled
+				+"\nusername: " + username +  "\npassword: " + password;
+	}
 }
