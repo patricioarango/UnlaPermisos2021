@@ -45,13 +45,11 @@ public class UsuariosController {
 	}
 	
 	@GetMapping("/eliminar/{id}")
-    public RedirectView eliminar(@PathVariable("id") long id){
-		UsuarioModel userModel =  userService.traerUsuarioYPerfilPorId(id);
-		
-		userModel.setNombre("nuevo ombre");
-		userModel.setUsername("nuevouseranem");
-		userModel.setEmail("nuevouseranem@email.com");
+    public String eliminar(@PathVariable("id") long id){
+		Usuario userModel =  userService.findById(id);
+		System.out.println(userModel);
+		userModel.setEnabled(false);
 		userService.updateUser(userModel);
-		return new RedirectView(ViewRoutesHelper.USUARIOS_LISTADO);
+		return "redirect:/usuarios/listar";
     }
 }

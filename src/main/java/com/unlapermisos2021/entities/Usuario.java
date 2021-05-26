@@ -68,6 +68,7 @@ public class Usuario {
 		this.setEmail(email);
 		this.setNombre(nombre);
 		this.setEnabled(true);
+		this.setUsername(username);
 		this.setPassword(password);
 		this.setRol(rol);
 		this.setNro_documento(nro_documento);

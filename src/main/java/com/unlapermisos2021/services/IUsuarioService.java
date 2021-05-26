@@ -9,6 +9,8 @@ public interface IUsuarioService {
 
 	public List<UsuarioModel> getAll();
 	
+	public Usuario findById(long id);
+	
 	public List<UsuarioModel> getAllEnabled(int enabled);
 		
 	//public UsuarioModel traerUsuarioPorId(long id);
@@ -21,7 +23,7 @@ public interface IUsuarioService {
 	
 	//public UsuarioModel traerUsuarioPorDni(int dni);
 	
-	public UsuarioModel updateUser(UsuarioModel usuario);
+	public UsuarioModel updateUser(Usuario userModel);
 	
 	//public boolean remove (long idUsuario);
 }
