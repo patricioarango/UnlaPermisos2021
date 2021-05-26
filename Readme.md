@@ -8,6 +8,6 @@ El proyecto funciona en http://localhost:7080 ya que el puerto 8080 lo tenía to
 
 ## Usuario por defecto
 ```bash
-administrador
-admin123
+admin
+admin
 ```
