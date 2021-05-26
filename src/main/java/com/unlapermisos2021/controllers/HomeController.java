@@ -23,7 +23,14 @@ public class HomeController {
 	public ModelAndView index(Authentication auth, HttpSession session, Model model) {
 		ModelAndView mav = new ModelAndView("home/home");
         UsuarioModel userModel =  userService.traerUsuarioYPerfilPorId(3);
-        System.out.println(userModel);
+        mav.addObject("usuario", userModel);
+        return mav;
+	}
+	
+	@GetMapping("/entrar")
+	public ModelAndView entrar(Authentication auth, HttpSession session, Model model) {
+		ModelAndView mav = new ModelAndView("home/home");
+        UsuarioModel userModel =  userService.traerUsuarioYPerfilPorId(3);
         mav.addObject("usuario", userModel);
         return mav;
 	}

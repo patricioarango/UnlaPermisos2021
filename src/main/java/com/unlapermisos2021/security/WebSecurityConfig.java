@@ -19,6 +19,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableWebSecurity
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+	
 	@Autowired
 	private UserDetailsService userDetails;
 
@@ -37,15 +38,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     };
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/").permitAll();
-		/*http.authorizeRequests() 
+		//http.authorizeRequests().antMatchers("/").permitAll();
+		http.authorizeRequests() 
 		.antMatchers(resources).permitAll()
 		.anyRequest().authenticated()
 		.and()
-		.formLogin() 
-		.loginPage("/login").permitAll()
-		.defaultSuccessUrl("/home")
-		.failureUrl("/login?error=credenciales");*/
+		.formLogin()
+		.defaultSuccessUrl("/home/entrar")
+		.usernameParameter("username")
+		.passwordParameter("password");
 	}
 
 }

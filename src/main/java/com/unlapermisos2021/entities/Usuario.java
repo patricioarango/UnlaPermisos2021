@@ -80,7 +80,7 @@ public class Usuario {
 		this.setCreatedAt(LocalDateTime.now());
 		this.setUpdatedAt(LocalDateTime.now());
 	}
-
+	
 	public long getId() {
 		return id;
 	}

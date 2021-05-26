@@ -13,7 +13,7 @@ import com.unlapermisos2021.repositories.IUsuarioRepository;
 import com.unlapermisos2021.services.IUsuarioService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Service
+@Service("usuarioService")
 public class UsuarioService implements IUsuarioService{
 
 	@Autowired 

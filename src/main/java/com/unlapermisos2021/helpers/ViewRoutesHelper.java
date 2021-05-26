@@ -9,4 +9,5 @@ public class ViewRoutesHelper {
 	
 	public static final String ROLES_LISTADO = "/roles/listado_roles";
 	public static final String ROLES_FORM = "/roles/form_rol";
+	public static final String HOME = "/home/home";
 }
