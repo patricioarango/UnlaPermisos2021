@@ -12,7 +12,6 @@ public class UsuarioModel {
 	private String password;
 	private String email;
 	private UserRoleModel rol;
-	private int id_rol;
 	private String tipo_documento;
 	private String nro_documento;
 	private LocalDateTime createdat;

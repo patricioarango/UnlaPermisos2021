@@ -63,7 +63,7 @@ public class Usuario {
 	}
 
 	public Usuario(Long id, String nombre, String apellido, String email, String username, String password, String tipo_documento, String nro_documento,UserRole rol, boolean enabled) {
-		this.setId(getId());
+		this.setId(id);
 		this.setApellido(apellido);
 		this.setEmail(email);
 		this.setNombre(nombre);
