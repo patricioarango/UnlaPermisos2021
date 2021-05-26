@@ -33,14 +33,20 @@ public class UserRole {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
-	@OneToMany(mappedBy="rol")  //1 ROL TIENE MUCHOS USUARIOS  . perfil ES DE LA LISTA DE USUARIOS
-	private Set<Usuario> usuarios;// =new HashSet<Usuario>();
+	@Column(name = "enabled")
+	private boolean enabled;
+	
+	@OneToMany(mappedBy="rol")  
+	private Set<Usuario> usuarios;
 	
 	public UserRole() {
 	}
 
-	public UserRole(String role) {
-		this.role = role;
+	public UserRole(long Id, String role) {
+		this.setId(Id);
+		this.setRole(role);
+		this.setEnabled(true);
+		this.setUpdatedAt(LocalDateTime.now());
 	}
 
 	public long getId() {
@@ -83,4 +89,11 @@ public class UserRole {
 		this.usuarios = usuarios;
 	}
 
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 }

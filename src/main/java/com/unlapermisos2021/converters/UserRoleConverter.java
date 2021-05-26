@@ -9,10 +9,10 @@ import com.unlapermisos2021.models.UserRoleModel;
 public class UserRoleConverter {
 	
 	public UserRoleModel entityToModel(UserRole rol) {
-		return new UserRoleModel(rol.getRole());
+		return new UserRoleModel(rol.getId(),rol.getRole());
 	}
 
 	public UserRole modeltoEntity(UserRoleModel rol) {
-		return new UserRole(rol.getRole());
+		return new UserRole(rol.getId(),rol.getRole());
 	}
 }

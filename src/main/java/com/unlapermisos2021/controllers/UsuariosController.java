@@ -52,7 +52,6 @@ public class UsuariosController {
 	@GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable("id") long id){
 		Usuario userModel =  userService.findById(id);
-		System.out.println(userModel);
 		userModel.setEnabled(false);
 		userService.updateUser(userModel);
 		return "redirect:/usuarios/listar";

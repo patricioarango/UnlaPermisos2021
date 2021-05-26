@@ -13,17 +13,18 @@ public interface IUsuarioService {
 	
 	public List<UsuarioModel> getAllEnabled(int enabled);
 		
-	//public UsuarioModel traerUsuarioPorId(long id);
+	public UsuarioModel updateUser(Usuario userModel);
 
 	public UsuarioModel traerUsuarioYPerfilPorId(long id);
 
 	public UsuarioModel traerUsuarioYPerfilPorUsername(String username);
 	
+	//public UsuarioModel traerUsuarioPorId(long id);
 	//public UsuarioModel traerUsuarioPorUsername(String username);
 	
 	//public UsuarioModel traerUsuarioPorDni(int dni);
 	
-	public UsuarioModel updateUser(Usuario userModel);
+
 	
 	//public boolean remove (long idUsuario);
 }
