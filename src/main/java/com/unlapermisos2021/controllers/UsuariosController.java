@@ -57,4 +57,9 @@ public class UsuariosController {
 		userService.updateUser(userModel);
 		return "redirect:/usuarios/listar";
     }
+	
+	@GetMapping("/exportarpdf")
+	public void exportarpdf() {
+		
+	}
 }
