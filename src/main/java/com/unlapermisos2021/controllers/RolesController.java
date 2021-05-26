@@ -46,7 +46,6 @@ public class RolesController {
         return mav;
 	}
 	
-	@Secured("ROLE_ADMINISTADOR")
 	@GetMapping("/nuevo")
 	public ModelAndView nuevo(Model model) {
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.ROLES_FORM);
@@ -55,7 +54,6 @@ public class RolesController {
         return mav;
 	}
 
-	@Secured("ROLE_ADMINISTADOR")
 	@GetMapping("/modificar/{id}")
     public ModelAndView modificar(@PathVariable("id") long id){
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.ROLES_FORM);
@@ -64,7 +62,6 @@ public class RolesController {
         return mav;
     }
 	
-	@Secured("ROLE_ADMINISTADOR")
 	@GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable("id") long id){
 		UserRole rol =  rolService.findById(id);
@@ -73,7 +70,6 @@ public class RolesController {
 		return "redirect:/roles/listar";
     }
 	
-	@Secured("ROLE_ADMINISTADOR")
 	@PostMapping("/guardar")
     public String guardar(@ModelAttribute("rol") UserRoleModel rol){
 		rol.setEnabled(true);
@@ -83,7 +79,6 @@ public class RolesController {
 		return "redirect:/roles/listar";
     }
 	
-	@Secured("ROLE_AUDITOR")
 	@GetMapping("/exportarpdf")
 	public void exportarpdf() {
 		

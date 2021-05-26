@@ -50,7 +50,6 @@ public class UsuariosController {
         return mav;
 	}
 	
-	@Secured("ROLE_ADMINISTADOR")
 	@GetMapping("/nuevo")
 	public ModelAndView nuevo(Model model) {
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.USUARIOS_FORM);
@@ -60,7 +59,6 @@ public class UsuariosController {
         return mav;
 	}
 	
-	@Secured("ROLE_ADMINISTADOR")
 	@GetMapping("/modificar/{id}")
 	public ModelAndView modificar(@PathVariable("id") long id, Model model) {
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.USUARIOS_FORM);
@@ -69,8 +67,7 @@ public class UsuariosController {
         mav.addObject("usuario", userModel);
         return mav;
 	}
-	
-	@Secured("ROLE_ADMINISTADOR")
+
 	@GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable("id") long id){
 		Usuario userModel =  userService.findById(id);
@@ -79,7 +76,6 @@ public class UsuariosController {
 		return "redirect:/usuarios/listar";
     }
 
-	@Secured("ROLE_ADMINISTADOR")
 	@PostMapping("/guardar")
     public String guardar(@ModelAttribute("usuario") UsuarioModel usuario){
 		usuario.setEnabled(true);
@@ -88,7 +84,6 @@ public class UsuariosController {
 		return "redirect:/usuarios/listar";
     }
 	
-	@Secured("ROLE_AUDITOR")
 	@GetMapping("/exportarpdf")
 	public void exportarpdf() {
 		
