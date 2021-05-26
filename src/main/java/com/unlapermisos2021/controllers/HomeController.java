@@ -30,7 +30,7 @@ public class HomeController {
 	@GetMapping("/entrar")
 	public ModelAndView entrar(Authentication auth, HttpSession session, Model model) {
 		ModelAndView mav = new ModelAndView("home/home");
-        UsuarioModel userModel =  userService.traerUsuarioYPerfilPorId(3);
+        UsuarioModel userModel =  userService.traerUsuarioYPerfilPorUsername(auth.getName());
         mav.addObject("usuario", userModel);
         return mav;
 	}
