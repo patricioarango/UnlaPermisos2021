@@ -8,7 +8,7 @@
 	        
 	    </div>
 	    <div class="col-4">
-	    	<button type="button" class="btn btn-primary">Exportar PDF</button>
+	    	<button type="button" class="btn btn-primary" th:classappend="${session.SessionRol == 'AUDITOR'}? mostrar : d-none">Exportar PDF</button>
 	    </div>
     <hr>
 	</div>
@@ -31,8 +31,8 @@
             <td th:text="${usuario.username}"></td>
             <td th:text="${usuario.email}"></td>
 			<td>
-				<a th:href="@{/usuarios/modificar/}+${usuario.id}" href="" role="button" class="btn btn-outline-primary">EDITAR</a>
-				<a th:href="@{/usuarios/eliminar/}+${usuario.id}" href="" role="button" class="btn btn-outline-danger">BORRAR</a>
+				<a th:href="@{/usuarios/modificar/}+${usuario.id}" href="" role="button" class="btn btn-outline-primary" th:classappend="${session.SessionRol == 'ADMINISTRADOR'}? mostrar : d-none">EDITAR</a>
+				<a th:href="@{/usuarios/eliminar/}+${usuario.id}" href="" role="button" class="btn btn-outline-danger" th:classappend="${session.SessionRol == 'ADMINISTRADOR'}? mostrar : d-none">BORRAR</a>
 			</td>
 		</tr>
 	</tbody>

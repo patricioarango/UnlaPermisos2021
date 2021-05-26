@@ -1,25 +1,47 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../static/css/login.css" th:href="@{/css/login.css}"  rel="stylesheet">
-    <script src="https://kit.fontawesome.com/d25b889486.js" crossorigin="anonymous"></script>
-    <title>TP OO2 GRUPO 10</title>
-</head>
-<body>
-    <div class="contenedor">   
-        <div class="backButtonAlta">
-            <a th:href="@{/usuario/listar}"><i class="fas fa-arrow-left"></i></a>
-        </div>    
-        <div class="login">
-            <form action="#" th:action="@{/usuario/crear}" th:object="${usuario}" method="POST">
-                <div class="input">
-                    <input type="text" th:field="*{nombre}" th:text="${nombre}" placeholder="Nombre" required="required" />
-                </div>
-              </form>
-        </div>
-    </div>
-</body>
-</html>
+<div class="row" th:insert="fragments/header"></div><br>
+   <div class="container">
+   	<div class="row">
+	    <div class="col-8">
+	        <h1>ABM Usuario</h1>
+	    </div>
+    <hr>
+	</div>
+<form class="form" th:action="@{/usuario/crear}" role="form" autocomplete="off">
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre</label>
+    <input type="text" th:value="${usuario.nombre}" class="form-control" id="nombre" required>
+  </div>
+    <div class="mb-3">
+    <label for="apellido" class="form-label">Apellido</label>
+    <input type="text" th:value="${usuario.apellido}" class="form-control" id="apellido" required>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" th:value="${usuario.email}" class="form-control" id="email" required>
+  </div>
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" th:value="${usuario.username}" class="form-control" id="username" required>
+  </div>  
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" th:value="${usuario.password}" class="form-control" id="password" required>
+  </div> 
+  <label for="password" class="form-label">Tipo de Documento</label>
+  	<select class="form-select">
+	  <option value="">Elegir</option>
+	  <option value="DNI">DNI</option>
+	  <option value="PASAPORTE">PASAPORTE</option>
+	  <option value="CUIT">CUIT</option>
+	</select>
+  <div class="mb-3">
+    <label for="nro_documento" class="form-label">Nro Documento</label>
+    <input type="text" th:value="${usuario.nro_documento}" class="form-control" id="nro_documento" required>
+  </div>   	
+  <div class="text-center">
+	<button type="button" class="btn btn-secondary">Cancelar</button>
+	<button type="button" class="btn btn-primary">Guardar</button>
+  </div> 
+</form>
+
+</div>
