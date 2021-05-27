@@ -1,0 +1,42 @@
+   <div class="row" th:insert="fragments/header">
+   </div>
+   <br>
+   <div class="container">
+   	<div class="row">
+	    <div class="col-8">
+	        <h1>Listado de Usuarios</h1>
+	        
+	    </div>
+	    <div class="col-4">
+	    	<button type="button" class="btn btn-primary" th:classappend="${session.SessionRol == 'AUDITOR'}? mostrar : d-none">Exportar PDF</button>
+	    	<a role="button" href="/usuarios/nuevo" class="btn btn-primary" th:classappend="${session.SessionRol == 'ADMINISTRADOR'}? mostrar : d-none">Crear Usuario</a>
+	    </div>
+    <hr>
+	</div>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Nombre</th>
+			<th>Apellido</th>
+			<th>Nro. Documento</th>
+			<th>Usuario</th>
+			<th>Email</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="usuario:${usuarios}">
+  			<td th:text="${usuario.nombre}"></td>
+            <td th:text="${usuario.apellido}"></td>
+            <td th:text="${usuario.nro_documento}"></td>
+            <td th:text="${usuario.username}"></td>
+            <td th:text="${usuario.email}"></td>
+			<td>
+				<a th:href="@{/usuarios/modificar/}+${usuario.id}" href="" role="button" class="btn btn-outline-primary" th:classappend="${session.SessionRol == 'ADMINISTRADOR'}? mostrar : d-none">EDITAR</a>
+				<a th:href="@{/usuarios/eliminar/}+${usuario.id}" href="" role="button" class="btn btn-outline-danger" th:classappend="${session.SessionRol == 'ADMINISTRADOR'}? mostrar : d-none">BORRAR</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<div class="row" th:insert="fragments/header"></div><br>
+   <div class="container">
+   	<div class="row">
+	    <div class="col-8">
+	        <h1>ABM Usuario</h1>
+	    </div>
+    <hr>
+	</div>
+<form class="form"  method="post" th:action="@{/usuarios/guardar}" th:object="${usuario}" role="form" autocomplete="off">
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre</label>
+     <input type="hidden" name="id" th:field="${usuario.id}">
+    <input type="text" name="nombre" th:value="${usuario.nombre}" class="form-control" id="nombre" required>
+  </div>
+    <div class="mb-3">
+    <label for="apellido" class="form-label">Apellido</label>
+    <input type="text" name="apellido" th:value="${usuario.apellido}" class="form-control" id="apellido" required>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" name="email" th:value="${usuario.email}" class="form-control" id="email" required>
+  </div>
+    <div class="mb-3">
+	  	<label for="id_rol" class="form-label">Rol</label>
+	  	<select class="form-select" th:field="${usuario.rol.id}">
+		   <option th:each="rol : ${roles}"
+              th:value="${rol.id}" 
+              th:text="${rol.role}"
+              />
+		</select>
+	</div>  
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" name="username" th:value="${usuario.username}" class="form-control" id="username" required>
+  </div>  
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" name="password" th:value="${usuario.password}" class="form-control" id="password" required>
+  </div> 
+    <div class="mb-3">
+	  	<label for="tipo_documento" class="form-label">Tipo de Documento</label>
+	  	<select class="form-select" id="tipo_documento" th:field="*{tipo_documento}">
+		  <option th:each="tipo_doc : ${T(com.unlapermisos2021.entities.Tipo_documento).values()}"
+            th:value="${tipo_doc}"
+            th:text="${tipo_doc}">
+		</select>
+	</div>
+  <div class="mb-3">
+    <label for="nro_documento" class="form-label">Nro Documento</label>
+    <input type="text" name="nro_documento" th:value="${usuario.nro_documento}" class="form-control" id="nro_documento" required>
+  </div>   	
+  <div class="text-center">
+	<a href="/usuarios/listar" role="button" class="btn btn-secondary">Cancelar</a>
+	<button type="submit" class="btn btn-primary">Guardar</button>
+  </div> 
+</form>
+
+</div>
