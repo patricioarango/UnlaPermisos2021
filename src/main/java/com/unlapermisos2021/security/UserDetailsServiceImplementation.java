@@ -1,5 +1,6 @@
 package com.unlapermisos2021.security;
 
+import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -13,7 +14,7 @@ import com.unlapermisos2021.repositories.IUsuarioRepository;
 
 @Service
 public class UserDetailsServiceImplementation implements UserDetailsService{
-
+	
 	@Autowired
 	private IUsuarioRepository userRepository;
 

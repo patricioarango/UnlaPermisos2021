@@ -42,11 +42,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		//http.authorizeRequests().antMatchers("/").permitAll();
 		http.authorizeRequests() 
 		.antMatchers(resources).permitAll()
-		//.antMatchers("/usuarios/nuevo").hasRole("ADMINISTRADOR")
+		.antMatchers("/").permitAll()
+		.antMatchers("/login").permitAll()
+		.antMatchers("/home/*").hasAnyAuthority("ADMINISTRADOR","AUDITOR")
+		.antMatchers("/usuarios/listar").hasAnyAuthority("ADMINISTRADOR","AUDITOR")
+		.antMatchers("/roles/listar").hasAnyAuthority("ADMINISTRADOR","AUDITOR")
+		.antMatchers("/usuarios/nuevo").hasAuthority("ADMINISTRADOR")
+		.antMatchers("/usuarios/modificar").hasAuthority("ADMINISTRADOR")
+		.antMatchers("/roles/nuevo").hasAuthority("ADMINISTRADOR")
+		.antMatchers("/roles/modificar").hasAuthority("ADMINISTRADOR")
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()
-		.defaultSuccessUrl("/home/entrar")
+		//.loginPage("/login")
+		.defaultSuccessUrl("/home/entrar",true)
 		.usernameParameter("username")
 		.passwordParameter("password");
 	}
