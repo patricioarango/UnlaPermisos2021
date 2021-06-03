@@ -33,8 +33,7 @@ public class Permiso {                            //A tener en cuenta:
 	@Column(name = "fecha")
 	private LocalDate fecha;
 
-	// En el diagrama aparece como "DESDE HASTA", para entenderlo mejor lo renombre
-	// "LUGARES"
+	// En el diagrama aparece como "DESDE HASTA", para entenderlo mejor lo renombre "LUGARES"
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "rel_permiso_lugar", joinColumns 
 	= @JoinColumn(name = "ID_PERMISO"), inverseJoinColumns
@@ -45,8 +44,9 @@ public class Permiso {                            //A tener en cuenta:
 
 	}
 
-	public Permiso(Persona persona, LocalDate fecha) {
+	public Permiso(int idPermiso, Persona persona, LocalDate fecha) {
 		super();
+		this.idPermiso = idPermiso;
 		this.persona = persona;
 		this.fecha = fecha;
 	}

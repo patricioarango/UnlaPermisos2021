@@ -1,44 +1,29 @@
-package com.unlapermisos2021.entities;
+package com.unlapermisos2021.models;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import com.unlapermisos2021.entities.PermisoPeriodo;
 
-@Entity
-@Table(name="rodado")
-public class Rodado {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class RodadoModel {
+	
 	private int idRodado;
 	
-	@Column(name="dominio")
 	private String dominio;
 	
-	@Column(name="vehiculo")
 	private String vehiculo;
 	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="rodado")
-	private Set<PermisoPeriodo> permisoPeriodos = new HashSet<PermisoPeriodo>();
-
+	private Set<PermisoPeriodo> permisoPeriodos = new HashSet<PermisoPeriodo>();	
 	
-	public Rodado() {
+	public RodadoModel() {
 	}
 
-	public Rodado(int idRodado,String dominio, String vehiculo) {
+	public RodadoModel(int idRodado,String dominio, String vehiculo) {
 		super();
 		this.idRodado=idRodado;
 		this.dominio = dominio;
 		this.vehiculo = vehiculo;
 	}
-
 
 	public int getIdRodado() {
 		return idRodado;
@@ -71,6 +56,5 @@ public class Rodado {
 	public void setPermisoPeriodos(Set<PermisoPeriodo> permisoPeriodos) {
 		this.permisoPeriodos = permisoPeriodos;
 	}
-	
 
 }
