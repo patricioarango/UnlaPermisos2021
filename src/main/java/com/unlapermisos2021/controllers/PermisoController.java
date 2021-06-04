@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.unlapermisos2021.helpers.ViewRoutesHelper;
-import com.unlapermisos2021.models.UsuarioModel;
+import com.unlapermisos2021.models.PersonaModel;
+
 
 @Controller
 @RequestMapping("/")
@@ -24,13 +25,13 @@ public class PermisoController {
 	@GetMapping("/permiso/ingresar_dni")
 	public ModelAndView ingresar_dni(Model model) {
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.PERMISO_DNI);
-		UsuarioModel userModel =  new UsuarioModel();
-        mav.addObject("persona", userModel);
+		PersonaModel persona =  new PersonaModel();
+        mav.addObject("persona", persona);
         return mav;
 	}
 
 	@PostMapping("/permiso/verificar_dni")
-	public ModelAndView verificar_dni(Model model,@ModelAttribute("usuario") UsuarioModel usuario) {
+	public ModelAndView verificar_dni(Model model,@ModelAttribute("persona") PersonaModel persona) {
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.PERMISO_DNI);
         return mav;
 	}

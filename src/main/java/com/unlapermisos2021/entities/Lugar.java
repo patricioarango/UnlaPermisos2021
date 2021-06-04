@@ -1,6 +1,7 @@
 package com.unlapermisos2021.entities;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="lugar")
+@Table(name = "lugar")
 public class Lugar {
 
 	@Id
@@ -25,7 +26,7 @@ public class Lugar {
 	private String codigoPostal;
 
 	@ManyToMany(mappedBy = "lugares")
-	private List<Permiso> permisos;
+	private Set<Permiso> permisos;
 
 	public Lugar() {	
 	}
@@ -60,11 +61,11 @@ public class Lugar {
 		this.codigoPostal = codigoPostal;
 	}
 
-	public List<Permiso> getPermisos() {
+	public Set<Permiso> getPermisos() {
 		return permisos;
 	}
 
-	public void setPermisos(List<Permiso> permisos) {
+	public void setPermisos(Set<Permiso> permisos) {
 		this.permisos = permisos;
 	}
 

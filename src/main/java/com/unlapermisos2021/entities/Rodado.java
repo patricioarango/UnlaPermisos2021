@@ -13,16 +13,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="rodado")
+@Table(name = "rodado")
 public class Rodado {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idRodado;
 
-	@Column(name="dominio")
+	@Column(name="dominio",unique = true, nullable = false)
 	private String dominio;
 
-	@Column(name="vehiculo")
+	@Column(name="vehiculo",nullable = false)
 	private String vehiculo;
 
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="rodado")

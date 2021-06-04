@@ -1,7 +1,9 @@
 package com.unlapermisos2021.entities;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -18,26 +22,27 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "permiso") 
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Permiso {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idPermiso;
+	protected int idPermiso;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "persona_id", nullable = false)
-	private Persona persona;
+	protected Persona persona;
 
-	@Column(name = "fecha")
-	private LocalDate fecha;
+	@Column(name = "fecha", nullable = false)
+	protected LocalDate fecha;
 
 	// En el diagrama aparece como "DESDE HASTA", para entenderlo mejor lo renombre
 	// "LUGARES"
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "rel_permiso_lugar", joinColumns 
-	= @JoinColumn(name = "ID_PERMISO"), inverseJoinColumns
-	= @JoinColumn(name = "ID_LUGAR"))
-	private List<Lugar> lugares;
+	= @JoinColumn(name = "permiso_id"), inverseJoinColumns
+	= @JoinColumn(name = "lugar_id"))
+	private Set<Lugar> lugares = new HashSet<>();
 
 	public Permiso() {
 
@@ -74,11 +79,15 @@ public class Permiso {
 		this.fecha = fecha;
 	}
 
-	public List<Lugar> getLugares() {
+	public Set<Lugar> getLugares() {
 		return lugares;
 	}
 
-	public void setLugares(List<Lugar> lugares) {
+	public void setLugares(Set<Lugar> lugares) {
 		this.lugares = lugares;
+	}
+	
+	public void agregarLugaraPermiso(Lugar lugar) {
+		this.lugares.add(lugar);
 	}
 }

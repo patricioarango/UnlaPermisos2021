@@ -7,12 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="permisoperiodo")
-//@PrimaryKeyJoinColumn(name="idPermiso")
+@Table(name = "permisoperiodo")
+@PrimaryKeyJoinColumn(name="idPermiso")
 public class PermisoPeriodo extends Permiso{
+	
 	@Column(name="cantdias")
 	private int cantDias;
 
@@ -52,15 +54,12 @@ public class PermisoPeriodo extends Permiso{
 		this.vacaciones = vacaciones;
 	}
 
-
 	public Rodado getRodado() {
 		return rodado;
 	}
 
-
 	public void setRodado(Rodado rodado) {
 		this.rodado = rodado;
 	}
-
 
 } 

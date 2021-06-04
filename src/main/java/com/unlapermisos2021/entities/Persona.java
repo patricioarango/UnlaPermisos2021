@@ -20,13 +20,13 @@ public class Persona {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPersona;
 
-	@Column(name="nombrePersona")
+	@Column(name="nombre_persona", nullable = false)
 	private String nombrePersona;
 
-	@Column(name="apellidoPersona")
+	@Column(name="apellido_persona", nullable = false)
 	private String apellidoPersona ;
 
-	@Column(name="dniPersona")
+	@Column(name="dni_persona",unique = true, nullable = false)
 	private long dniPersona ;
 
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="persona")

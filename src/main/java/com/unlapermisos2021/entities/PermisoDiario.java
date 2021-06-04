@@ -4,11 +4,12 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="permisodiario")
-//@PrimaryKeyJoinColumn(name="idPermiso")
+@Table(name = "permisodiario")
+@PrimaryKeyJoinColumn(name="idPermiso")
 public class PermisoDiario extends Permiso{
 
 	@Column(name="motivo")

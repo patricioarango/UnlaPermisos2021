@@ -2,7 +2,7 @@
 <body>
 <form class="form"  method="post" th:action="@{/permiso/verificar_dni}" th:object="${persona}" role="form" autocomplete="off">
 	<label for="ingresar_dni">Enter a date before 1980-01-01:</label>
-	<input type="number" th:value="${persona.nro_documento}" id="ingresar_dni" min="100000" max="9900000" name="ingresar_dni" required>
+	<input type="number" th:value="${persona.dni_persona}" id="ingresar_dni" min="100000" max="9900000" name="ingresar_dni" required>
 	<button type="submit" class="btn btn-primary">Guardar</button>
 </form>
 </body></html>
