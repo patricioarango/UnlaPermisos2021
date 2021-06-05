@@ -3,10 +3,11 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,28 +18,31 @@ public class Lugar {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idLugar;
 
-	@Column(name="nombrelugar")
-	private String nombreLugar;
+	@Column(name="lugar")
+	private String lugar;
 
 	@Column(name="codigopostal")
 	private String codigoPostal;
 
-	@ManyToMany(mappedBy = "lugares")
-	private Set<Permiso> permisos;
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="desde")
+	private Set<Permiso> setdesde;
 
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="hasta")
+	private Set<Permiso> sethasta;
+	
 	public Lugar() {	
 	}
 
-	public Lugar(String nombreLugar, String codigoPostal) {
+	public Lugar(String lugar, String codigoPostal) {
 		super();
-		this.nombreLugar = nombreLugar;
+		this.lugar = lugar;
 		this.codigoPostal = codigoPostal;
 	}
 	
-	public Lugar(int idLugar,String nombreLugar, String codigoPostal) {
+	public Lugar(int idLugar,String lugar, String codigoPostal) {
 		super();
 		this.idLugar = idLugar;
-		this.nombreLugar = nombreLugar;
+		this.lugar = lugar;
 		this.codigoPostal = codigoPostal;
 	}
 	
@@ -50,12 +54,12 @@ public class Lugar {
 		this.idLugar = idLugar;
 	}
 
-	public String getNombreLugar() {
-		return nombreLugar;
+	public String getLugar() {
+		return lugar;
 	}
 
-	public void setNombreLugar(String nombreLugar) {
-		this.nombreLugar = nombreLugar;
+	public void setLugar(String lugar) {
+		this.lugar = lugar;
 	}
 
 	public String getCodigoPostal() {
@@ -66,12 +70,19 @@ public class Lugar {
 		this.codigoPostal = codigoPostal;
 	}
 
-	public Set<Permiso> getPermisos() {
-		return permisos;
+	public Set<Permiso> getDesde() {
+		return setdesde;
 	}
 
-	public void setPermisos(Set<Permiso> permisos) {
-		this.permisos = permisos;
+	public Set<Permiso> getHasta() {
+		return sethasta;
+	}
+	
+	public void setSetdesde(Set<Permiso> setdesde) {
+		this.setdesde = setdesde;
 	}
 
+	public void setSethasta(Set<Permiso> sethasta) {
+		this.sethasta = sethasta;
+	}
 }

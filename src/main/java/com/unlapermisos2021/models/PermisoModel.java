@@ -11,8 +11,8 @@ public class PermisoModel {
 	private PersonaModel pedido;
 
 	private LocalDate fecha;
-
-    private Set<LugarModel> lugares = new HashSet<>();
+	private LugarModel desde;
+    private LugarModel hasta;
 
     public PermisoModel () {
 
@@ -22,12 +22,13 @@ public class PermisoModel {
 		this.idPermiso=idPermiso;
 	}
 	
-	public PermisoModel(int idPermiso,PersonaModel pedido, Set<LugarModel> lugares, LocalDate fecha) {
+	public PermisoModel(int idPermiso,PersonaModel pedido, LugarModel desde, LugarModel hasta, LocalDate fecha) {
 		super();
 		this.idPermiso=idPermiso;
 		this.pedido = pedido;
 		this.fecha = fecha;
-		this.lugares = lugares;
+		this.desde = desde;
+		this.hasta = hasta;
 	}
 
 	public PermisoModel(int idPermiso,PersonaModel pedido,LocalDate fecha) {
@@ -37,11 +38,12 @@ public class PermisoModel {
 		this.fecha = fecha;
 	}
 
-	public PermisoModel(int idPermiso,PersonaModel pedido,Set<LugarModel> lugares) {
+	public PermisoModel(int idPermiso,PersonaModel pedido,LugarModel desde, LugarModel hasta) {
 		super();
 		this.idPermiso=idPermiso;
 		this.pedido = pedido;
-		this.lugares = lugares;
+		this.desde = desde;
+		this.hasta = hasta;
 	}
 	
 	public PermisoModel(PersonaModel pedido,LocalDate fecha) {
@@ -73,16 +75,18 @@ public class PermisoModel {
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
-
-	public Set<LugarModel> getLugares() {
-		return lugares;
+    public LugarModel getDesde() {
+		return desde;
+	}
+	public void setDesde(LugarModel desde) {
+		this.desde = desde;
+	}
+	public LugarModel getHasta() {
+		return hasta;
+	}
+	public void setHasta(LugarModel hasta) {
+		this.hasta = hasta;
 	}
 
-	public void setLugares(Set<LugarModel> lugares) {
-		this.lugares = lugares;
-	}
 
-	public void agregarLugaraPermiso(LugarModel l) {
-		lugares.add(l);	
-	}
 }

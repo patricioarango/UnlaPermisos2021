@@ -11,13 +11,13 @@ public class PermisoDiarioModel extends PermisoModel{
 
 	}
 
-	public PermisoDiarioModel(int idPermiso,PersonaModel pedido, Set<LugarModel> lugares, LocalDate fecha, String motivo) {
-		super(idPermiso,pedido, lugares, fecha);
+	public PermisoDiarioModel(int idPermiso,PersonaModel pedido, LugarModel desde, LugarModel hasta, LocalDate fecha, String motivo) {
+		super(idPermiso,pedido, desde,hasta, fecha);
 		this.motivo = motivo;
 	}
 	
-	public PermisoDiarioModel(int idPermiso,PersonaModel pedido, Set<LugarModel> lugares) {
-		super(idPermiso,pedido, lugares);
+	public PermisoDiarioModel(int idPermiso,PersonaModel pedido, LugarModel desde, LugarModel hasta) {
+		super(idPermiso,pedido, desde,hasta);
 	}
 	
 	public PermisoDiarioModel(int idPermiso,String motivo) {

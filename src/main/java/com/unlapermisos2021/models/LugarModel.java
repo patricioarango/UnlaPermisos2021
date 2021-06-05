@@ -7,7 +7,7 @@ import com.unlapermisos2021.entities.Permiso;
 public class LugarModel {
 	private int idLugar;
 
-	private String nombreLugar;
+	private String lugar;
 
 	private String codigoPostal;
 
@@ -17,10 +17,10 @@ public class LugarModel {
     public LugarModel() {	
 	}
 
-	public LugarModel(int idLugar,String nombreLugar, String codigoPostal) {
+	public LugarModel(int idLugar,String lugar, String codigoPostal) {
 		super();
-		this.idLugar=idLugar;
-		this.nombreLugar = nombreLugar;
+		this.idLugar = idLugar;
+		this.lugar = lugar;
 		this.codigoPostal = codigoPostal;
 	}
 
@@ -32,12 +32,12 @@ public class LugarModel {
 		this.idLugar = idLugar;
 	}
 
-	public String getNombreLugar() {
-		return nombreLugar;
+	public String getLugar() {
+		return lugar;
 	}
 
-	public void setNombreLugar(String nombreLugar) {
-		this.nombreLugar = nombreLugar;
+	public void setLugar(String lugar) {
+		this.lugar = lugar;
 	}
 
 	public String getCodigoPostal() {
@@ -58,7 +58,7 @@ public class LugarModel {
 
 	@Override
 	public String toString() {
-		return "[lugar: " + this.getNombreLugar() + " CodigoPostal: " + this.getCodigoPostal() + "]";
+		return "[idLugar: "+ this.idLugar + "lugar: " + this.getLugar() + " CodigoPostal: " + this.getCodigoPostal() + "]";
 	}
 
 }

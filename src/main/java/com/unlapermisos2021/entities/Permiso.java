@@ -38,13 +38,13 @@ public class Permiso {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	protected LocalDate fecha;
 
-	// En el diagrama aparece como "DESDE HASTA", para entenderlo mejor lo renombre
-	// "LUGARES"
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "rel_permiso_lugar", joinColumns 
-	= @JoinColumn(name = "permiso_id"), inverseJoinColumns
-	= @JoinColumn(name = "lugar_id"))
-	private Set<Lugar> lugares = new HashSet<>();
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "desde", nullable = false)
+	protected Lugar desde;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "hasta", nullable = false)
+	protected Lugar hasta;
 
 	public Permiso() {
 		super();
@@ -70,19 +70,21 @@ public class Permiso {
 		this.fecha = fecha;
 	}
 	
-	public Permiso(int idPermiso, Persona persona, Set<Lugar> lugares, LocalDate fecha) {
+	public Permiso(int idPermiso, Persona persona, Lugar desde, Lugar hasta, LocalDate fecha) {
 		super();
 		this.idPermiso = idPermiso;
 		this.pedido = persona;
 		this.fecha = fecha;
-		this.setLugares(lugares);
-		}
+		this.desde = desde;
+		this.hasta = hasta;
+	}
 
-	public Permiso(int idPermiso, Persona persona, Set<Lugar> lugares) {
+	public Permiso(int idPermiso, Persona persona, Lugar desde, Lugar hasta) {
 		super();
 		this.idPermiso = idPermiso;
 		this.pedido = persona;
-		this.setLugares(lugares);
+		this.desde = desde;
+		this.hasta = hasta;
 	}
 	
 	public int getIdPermiso() {
@@ -109,11 +111,19 @@ public class Permiso {
 		this.fecha = fecha;
 	}
 
-	public Set<Lugar> getLugares() {
-		return lugares;
+	public void setDesde(Lugar lugar) {
+		this.desde = lugar;
 	}
-
-	public void setLugares(Set<Lugar> lugares) {
-		this.lugares = lugares;
+	
+	public void setHasta(Lugar lugar) {
+		this.hasta = lugar;
+	}
+	
+	public Lugar getDesde() {
+		return desde;
+	}
+	
+	public Lugar getHasta() {
+		return hasta;
 	}
 }

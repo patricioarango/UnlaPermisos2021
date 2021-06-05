@@ -1,9 +1,7 @@
 package com.unlapermisos2021.controllers;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -132,11 +130,6 @@ public class PermisoController {
 	@RequestMapping(value = "/permiso/guardar", method = RequestMethod.POST,params="action=permisoDiario")
 	public ModelAndView permisoDiario(Model model,@ModelAttribute("desde") LugarModel desde,@ModelAttribute("hasta") LugarModel hasta,@ModelAttribute("permiso") PermisoModel permiso) {
 		PermisoModel permisoM = permisoService.findById(permiso.getIdPermiso());
-		
-		Set<LugarModel> lugares = new HashSet<>();
-		lugares.add(desde);
-		lugares.add(hasta);
-		permisoM.setLugares(lugares);
 		PermisoModel permisoDB = permisoService.guardar(permiso);
 		//permisoDiarioService.guardar(permisoDiario);
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.PERMISO_NUEVO_DIARIO);
