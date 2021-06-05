@@ -1,8 +1,5 @@
 package com.unlapermisos2021.entities;
-
-import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,8 +26,8 @@ public class Persona {
 	@Column(name="dni_persona",unique = true, nullable = false)
 	private long dniPersona ;
 
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="persona")
-	private Set<Permiso> permisos = new HashSet<Permiso>();
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="pedido")
+	private Set<Permiso> permiso;
 
 	public Persona() {
 	}
@@ -43,7 +40,14 @@ public class Persona {
 		this.dniPersona = dniPersona;
 	}
 
-
+	public Persona(int idPersona,String nombrePersona, String apellidoPersona, long dniPersona) {
+		super();
+		this.idPersona = idPersona;
+		this.nombrePersona = nombrePersona;
+		this.apellidoPersona = apellidoPersona;
+		this.dniPersona = dniPersona;
+	}
+	
 	public int getIdPersona() {
 		return idPersona;
 	}
@@ -82,16 +86,5 @@ public class Persona {
 	public void setDniPersona(long dniPersona) {
 		this.dniPersona = dniPersona;
 	}
-
-
-	public Set<Permiso> getPermisos() {
-		return permisos;
-	}
-
-
-	public void setPermisos(Set<Permiso> permisos) {
-		this.permisos = permisos;
-	}
-
 
 }

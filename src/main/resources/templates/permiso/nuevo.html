@@ -25,19 +25,30 @@
     </style>
   </head>
  <body class="bg-primary">
- <header th:insert="fragments/navbar_publico">
- </header>
 <main>
   <div class="container">
   <div class="row">
-    <div class="col-8 mb-3 text-white">
-    <form method="post" class="vertical-center23" th:action="@{/permiso/verificar_dni}" th:object="${persona}" role="form" autocomplete="off">
-    	<h1 class="h3 display-3">Ingres&aacute; tu DNI</h1>	
-		<label for="ingresar_dni">paso 1/3</label>
-		<input class="form-control" type="number" placeholder="sin puntos ni guiones"  id="dniPersona" min="100000" max="99000000" name="dniPersona" required>
-		<br>
-		<button type="submit" class="btn btn-warning">continuar</button>
-	</form>	
+    <div class="col-8 text-white vertical-center23">
+	<form method="post" th:action="@{/permiso/guardar/}" role="form" autocomplete="off">
+  <input type="hidden" th:object="${permiso}"/>
+  <input type="hidden" th:field="${permiso.idPermiso}"/>
+  <div th:object="${desde}">
+	  <div class="col-auto">
+	    <label class="form-label">Desde Lugar</label>
+	    <input type="text" th:field="${desde.nombreLugar}" class="form-control" required>
+	    <label class="form-label">Desde Codigo Postal</label>
+	    <input type="text" th:field="${desde.codigoPostal}" class="form-control" required>
+	    <div th:object="${hasta}">
+    		<label class="form-label">Hasta Lugar</label>
+    		<input type="text" th:field="${hasta.nombreLugar}" class="form-control" required>
+    		<label class="form-label">Hasta Codigo Postal</label>
+    		<input type="text" th:field="${hasta.codigoPostal}" class="form-control" required><br>
+    		<button type="submit" name="action" value="permisoDiario" class="btn btn-secondary">Permiso por un d&iacute;a</button>
+			<button type="submit" name="action" value="permisoPeriodo" class="btn btn-secondary">Permiso Prolongado</button>
+  		</div>
+	  </div>
+  </div>
+</form>
     </div>
     <div class="d-none col-md-4 d-md-block bg-info">
       <img src="https://1.bp.blogspot.com/-2XbNMce8bSo/WTl3xpGhnVI/AAAAAAAABeg/LwJhpLipjXAPsr2R_xJQ6mRnZSlV74DoQCLcB/s1600/machine1_2.gif" class="img-fluid vertical-center img-circle shadow p-3 mb-5" />

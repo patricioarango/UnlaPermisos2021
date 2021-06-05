@@ -3,7 +3,6 @@ package com.unlapermisos2021.models;
 import java.time.LocalDateTime;
 
 import com.unlapermisos2021.entities.Tipo_documento;
-import com.unlapermisos2021.entities.UserRole;
 
 public class UsuarioModel {
 	private long id;

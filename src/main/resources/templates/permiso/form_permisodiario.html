@@ -1,0 +1,7 @@
+<p>nuevo permiso diarios</p>
+<form class="form"  method="post" th:action="@{/permiso/guardar_permiso_diario}" role="form" autocomplete="off">
+  <input type="hidden" th:object="${permisoDiario}"/>
+  <input type="hidden" th:field="${permisoDiario.idPermiso}"/>
+<input type="text" name="motivo" class="form-control" id="motivo" required>
+<button type="submit" class="btn btn-primary">Finalizar</button>
+</form>

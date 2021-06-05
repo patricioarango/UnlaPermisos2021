@@ -56,6 +56,9 @@ public class LugarModel {
 		this.permisos = permisos;
 	}
 
-
+	@Override
+	public String toString() {
+		return "[lugar: " + this.getNombreLugar() + " CodigoPostal: " + this.getCodigoPostal() + "]";
+	}
 
 }

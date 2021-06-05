@@ -2,7 +2,6 @@ package com.unlapermisos2021.entities;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -20,6 +19,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "permiso") 
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -31,9 +32,10 @@ public class Permiso {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "persona_id", nullable = false)
-	protected Persona persona;
+	protected Persona pedido;
 
 	@Column(name = "fecha", nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	protected LocalDate fecha;
 
 	// En el diagrama aparece como "DESDE HASTA", para entenderlo mejor lo renombre
@@ -45,16 +47,44 @@ public class Permiso {
 	private Set<Lugar> lugares = new HashSet<>();
 
 	public Permiso() {
-
+		super();
 	}
 
-	public Permiso(int idPermiso, Persona persona, LocalDate fecha) {
+
+	public Permiso(int idPermiso) {
 		super();
 		this.idPermiso = idPermiso;
-		this.persona = persona;
+	}
+	
+	public Permiso(int idPermiso,Persona persona,LocalDate fecha) {
+		super();
+		this.idPermiso = idPermiso;
+		this.pedido = persona;
 		this.fecha = fecha;
 	}
 
+
+	public Permiso(Persona persona,LocalDate fecha) {
+		super();
+		this.pedido = persona;
+		this.fecha = fecha;
+	}
+	
+	public Permiso(int idPermiso, Persona persona, Set<Lugar> lugares, LocalDate fecha) {
+		super();
+		this.idPermiso = idPermiso;
+		this.pedido = persona;
+		this.fecha = fecha;
+		this.setLugares(lugares);
+		}
+
+	public Permiso(int idPermiso, Persona persona, Set<Lugar> lugares) {
+		super();
+		this.idPermiso = idPermiso;
+		this.pedido = persona;
+		this.setLugares(lugares);
+	}
+	
 	public int getIdPermiso() {
 		return idPermiso;
 	}
@@ -63,12 +93,12 @@ public class Permiso {
 		this.idPermiso = idPermiso;
 	}
 
-	public Persona getPersona() {
-		return persona;
+	public Persona getPedido() {
+		return pedido;
 	}
 
-	public void setPersona(Persona persona) {
-		this.persona = persona;
+	public void setPedido(Persona persona) {
+		this.pedido = persona;
 	}
 
 	public LocalDate getFecha() {
@@ -85,9 +115,5 @@ public class Permiso {
 
 	public void setLugares(Set<Lugar> lugares) {
 		this.lugares = lugares;
-	}
-	
-	public void agregarLugaraPermiso(Lugar lugar) {
-		this.lugares.add(lugar);
 	}
 }

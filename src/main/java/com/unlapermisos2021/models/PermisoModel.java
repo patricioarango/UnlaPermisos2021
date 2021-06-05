@@ -1,32 +1,55 @@
 package com.unlapermisos2021.models;
 
 import java.time.LocalDate;
-import java.util.List;
-
-import com.unlapermisos2021.entities.Lugar;
-import com.unlapermisos2021.entities.Persona;
+import java.util.HashSet;
+import java.util.Set;
 
 public class PermisoModel {
 
 	private int idPermiso;
 
-	private Persona pedido;
+	private PersonaModel pedido;
 
-	private LocalDate fecha ;
+	private LocalDate fecha;
 
-    private List<Lugar> lugares;
+    private Set<LugarModel> lugares = new HashSet<>();
 
     public PermisoModel () {
 
 	}
+	public PermisoModel(int idPermiso) {
+		super();
+		this.idPermiso=idPermiso;
+	}
+	
+	public PermisoModel(int idPermiso,PersonaModel pedido, Set<LugarModel> lugares, LocalDate fecha) {
+		super();
+		this.idPermiso=idPermiso;
+		this.pedido = pedido;
+		this.fecha = fecha;
+		this.lugares = lugares;
+	}
 
-	public PermisoModel(int idPermiso,Persona pedido, LocalDate fecha) {
+	public PermisoModel(int idPermiso,PersonaModel pedido,LocalDate fecha) {
 		super();
 		this.idPermiso=idPermiso;
 		this.pedido = pedido;
 		this.fecha = fecha;
 	}
 
+	public PermisoModel(int idPermiso,PersonaModel pedido,Set<LugarModel> lugares) {
+		super();
+		this.idPermiso=idPermiso;
+		this.pedido = pedido;
+		this.lugares = lugares;
+	}
+	
+	public PermisoModel(PersonaModel pedido,LocalDate fecha) {
+		super();
+		this.pedido = pedido;
+		this.fecha = fecha;
+	}
+	
 	public int getIdPermiso() {
 		return idPermiso;
 	}
@@ -35,11 +58,11 @@ public class PermisoModel {
 		this.idPermiso = idPermiso;
 	}
 
-	public Persona getPedido() {
+	public PersonaModel getPedido() {
 		return pedido;
 	}
 
-	public void setPedido(Persona pedido) {
+	public void setPedido(PersonaModel pedido) {
 		this.pedido = pedido;
 	}
 
@@ -51,13 +74,15 @@ public class PermisoModel {
 		this.fecha = fecha;
 	}
 
-	public List<Lugar> getLugares() {
+	public Set<LugarModel> getLugares() {
 		return lugares;
 	}
 
-	public void setLugares(List<Lugar> lugares) {
+	public void setLugares(Set<LugarModel> lugares) {
 		this.lugares = lugares;
 	}
 
-
+	public void agregarLugaraPermiso(LugarModel l) {
+		lugares.add(l);	
+	}
 }

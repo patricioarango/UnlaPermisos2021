@@ -2,10 +2,7 @@ package com.unlapermisos2021.converters;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.unlapermisos2021.entities.UserRole;
 import com.unlapermisos2021.entities.Usuario;
-import com.unlapermisos2021.models.UserRoleModel;
 import com.unlapermisos2021.models.UsuarioModel;
 
 @Component

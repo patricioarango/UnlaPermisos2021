@@ -1,6 +1,7 @@
 package com.unlapermisos2021.entities;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,8 +29,8 @@ public class PermisoPeriodo extends Permiso{
 	public PermisoPeriodo() {
 	}
 
-	public PermisoPeriodo(int idPermiso,Persona pedido, LocalDate fecha,int cantDias, boolean vacaciones, Rodado rodado) {
-		super(idPermiso, pedido, fecha);
+	public PermisoPeriodo(int idPermiso,Persona pedido, Set<Lugar> lugares, LocalDate fecha,int cantDias, boolean vacaciones, Rodado rodado) {
+		super(idPermiso, pedido, lugares, fecha);
 		this.cantDias = cantDias;
 		this.vacaciones = vacaciones;
 		this.rodado = rodado;

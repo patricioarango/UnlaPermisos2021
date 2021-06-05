@@ -1,6 +1,5 @@
 package com.unlapermisos2021.security;
 
-import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -20,17 +19,6 @@ public class UserDetailsServiceImplementation implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username)    {
-		//Usuario user =  userRepository.findByUsernameAndFetchPerfilEagerly(username);
-		/*List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
-
-		//UserRole rol = user.getRol();
-
-		GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ADMINISTRADOR");
-
-		grantList.add(grantedAuthority); 
-
-		UserDetails usuario = (UserDetails) new User("patricio", "passroed", grantList);
-		return usuario;*/
 		Usuario user =  userRepository.findByUsername(username);
 		UserBuilder builder = null;
 		builder = User.withUsername(username);

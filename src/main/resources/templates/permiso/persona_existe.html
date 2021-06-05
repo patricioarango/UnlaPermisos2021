@@ -25,19 +25,37 @@
     </style>
   </head>
  <body class="bg-primary">
- <header th:insert="fragments/navbar_publico">
- </header>
+ 
 <main>
   <div class="container">
-  <div class="row">
-    <div class="col-8 mb-3 text-white">
-    <form method="post" class="vertical-center23" th:action="@{/permiso/verificar_dni}" th:object="${persona}" role="form" autocomplete="off">
-    	<h1 class="h3 display-3">Ingres&aacute; tu DNI</h1>	
-		<label for="ingresar_dni">paso 1/3</label>
-		<input class="form-control" type="number" placeholder="sin puntos ni guiones"  id="dniPersona" min="100000" max="99000000" name="dniPersona" required>
-		<br>
-		<button type="submit" class="btn btn-warning">continuar</button>
-	</form>	
+  <div class="row text-white">
+  
+    <div class="col-8 text-white">
+    	<div th:if="${not#lists.isEmpty(permisosDiarios)}">
+    	<h3>Ya existen permisos activos para tu DNI</h3><br>
+		<table class="table table-hover vertical-center23">
+			<thead>
+				<tr>
+					<th>Fecha</th>
+					<th>Motivo</th>
+					<th>Ver</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="permisoDiario:${permisosDiarios}">
+		  			<td th:text="${permisoDiario.fecha}"></td>
+		            <td th:text="${permisoDiario.motivo}"></td>
+		            <td><a th:href="@{/permiso/ver_permiso_diario/}+${permisoDiario.idPermiso}" href="" role="button" class="btn btn-light">ver</a></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		<div th:if="${#lists.isEmpty(permisosDiarios)}">
+		<h1 class="h3 display-3 vertical-center23">TU DNI ya se encuentra registrado</h1>
+		<h3 class="white-text vertical-center23">(sin permisos activos)</h3>
+			<a class="vertical-center23 btn btn-secondary" th:href="@{/permiso/nuevo/}+${persona.idPersona}" href="">Sacar permiso Diario</a>
+			<a class="vertical-center23 btn btn-secondary" th:href="@{/permiso/nuevo/}+${persona.idPersona}" href="">Sacar permiso para Vacaciones</a>
+		</div>
     </div>
     <div class="d-none col-md-4 d-md-block bg-info">
       <img src="https://1.bp.blogspot.com/-2XbNMce8bSo/WTl3xpGhnVI/AAAAAAAABeg/LwJhpLipjXAPsr2R_xJQ6mRnZSlV74DoQCLcB/s1600/machine1_2.gif" class="img-fluid vertical-center img-circle shadow p-3 mb-5" />

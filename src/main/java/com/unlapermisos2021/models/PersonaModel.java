@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.unlapermisos2021.entities.Permiso;
-import com.unlapermisos2021.entities.Usuario;
 
 public class PersonaModel {
 	private int idPersona;
@@ -13,23 +12,18 @@ public class PersonaModel {
 
 	private String apellidoPersona ;
 
-	private String nombreUsuarioPersona;
-
 	private long dniPersona ;
 
 	private Set<Permiso> permisos = new HashSet<Permiso>();
 
-	private Set<Usuario> usuarios = new HashSet<Usuario>();
-
 	public PersonaModel() {
 	}
 
-	public PersonaModel(int idPersona,String nombrePersona, String apellidoPersona, long dniPersona,String nombreUsuarioPersona) {
+	public PersonaModel(int idPersona,String nombrePersona, String apellidoPersona, long dniPersona) {
 		this.idPersona=idPersona;
 		this.nombrePersona = nombrePersona;
 		this.apellidoPersona = apellidoPersona;
 		this.dniPersona = dniPersona;
-		this.nombreUsuarioPersona= nombreUsuarioPersona;
 	}
 
 	public int getIdPersona() {
@@ -56,14 +50,6 @@ public class PersonaModel {
 		this.apellidoPersona = apellidoPersona;
 	}
 
-	public String getNombreUsuarioPersona() {
-		return nombreUsuarioPersona;
-	}
-
-	public void setNombreUsuarioPersona(String nombreUsuarioPersona) {
-		this.nombreUsuarioPersona = nombreUsuarioPersona;
-	}
-
 	public long getDniPersona() {
 		return dniPersona;
 	}
@@ -80,13 +66,10 @@ public class PersonaModel {
 		this.permisos = permisos;
 	}
 
-	public Set<Usuario> getUsuarios() {
-		return usuarios;
+	@Override
+	public String toString() {
+		return "[nombre: " + this.getNombrePersona() + " dni: " + this.getDniPersona() + "]";
 	}
 
-	public void setUsuarios(Set<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
-
-
+	
 }

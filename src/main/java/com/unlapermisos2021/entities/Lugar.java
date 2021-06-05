@@ -1,6 +1,4 @@
 package com.unlapermisos2021.entities;
-
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -36,7 +34,14 @@ public class Lugar {
 		this.nombreLugar = nombreLugar;
 		this.codigoPostal = codigoPostal;
 	}
-
+	
+	public Lugar(int idLugar,String nombreLugar, String codigoPostal) {
+		super();
+		this.idLugar = idLugar;
+		this.nombreLugar = nombreLugar;
+		this.codigoPostal = codigoPostal;
+	}
+	
 	public int getIdLugar() {
 		return idLugar;
 	}
