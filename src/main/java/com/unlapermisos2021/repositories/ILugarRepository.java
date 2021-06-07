@@ -8,4 +8,5 @@ import com.unlapermisos2021.entities.Lugar;
 
 public interface ILugarRepository extends JpaRepository<Lugar, Serializable>{
 
+	public Lugar findByIdLugar(int idLugar);
 }

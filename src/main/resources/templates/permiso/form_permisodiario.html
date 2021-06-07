@@ -1,10 +1,7 @@
 <p>nuevo permiso diarios</p>
 <form class="form"  method="post" th:action="@{/permiso/guardar_permiso_diario}" role="form" autocomplete="off">
   <input type="hidden" th:field="${persona.idPersona}"/>
-  <input type="hidden" th:object="${desdeF}" th:field="${desdeF}"/>
-  
-  <input type="hidden" th:object="${hastaF}" th:field="${hastaF.lugar}" />
-  <input type="hidden" th:object="${hastaF}" th:field="${hastaF.codigoPostal}"/>
+  <input type="hidden" th:field="${permiso.idPermiso}"/>
 <input type="text" th:object="${permisoDiario}" name="motivo" class="form-control" id="motivo" autofocus required>
 <button type="submit" class="btn btn-primary">Finalizar</button>
 </form>

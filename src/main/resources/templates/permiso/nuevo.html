@@ -32,22 +32,30 @@
     <div class="col-8 text-white mt-5">
     	<h1 class="h3 display-5 mt-5">Datos necesarios para el permiso</h1>
 		<form method="post" th:action="@{/permiso/guardar/}"  role="form" autocomplete="off">
-  		  <div class="col-auto mt-5">
-  		  	<input type="hidden" th:field="${persona.idPersona}"/>
-		    <label class="form-label">Desde Lugar</label>
-	    	<input type="text" name="lugar" th:value="${desde.lugar}" class="form-control" required>
-	    	<label class="form-label">Desde Codigo Postal</label>
-	    	<input type="text" name="codigoPostal" th:value="${desde.codigoPostal}" class="form-control" required>
-	    	 <label class="form-label">Hasta Lugar</label>
-	    	<input type="text" name="lugar" th:value="${hasta.lugar}" class="form-control" required>
-	    	<label class="form-label">Hasta Codigo Postal</label>
-	    	<input type="text" name="codigoPostal" th:value="${hasta.codigoPostal}" class="form-control" required>
+  		    <input type="hidden" th:field="${persona.idPersona}"/>
+  		    <input type="date"  class="form-control" name="fecha" id="fecha" required />
+		   	<label for="desde" class="form-label">Desde</label>
+		    <select class="form-select" name="desde" required>
+		   		<option value="">Elegir Lugar Inicial</option>
+		   		<option th:each="lugar : ${desde}"
+              			th:value="${lugar.idLugar}" 
+              			th:text="${lugar.lugar + ' (cod.' + lugar.codigoPostal + ')'}"
+              			/>
+				</select>
+		   	<label for="hasta" class="form-label">Hasta</label>
+		    <select class="form-select" name="hasta" required>
+		   		<option value="">Elegir Lugar Final</option>
+		   		<option th:each="lugar : ${hasta}"
+              			th:value="${lugar.idLugar}" 
+              			th:text="${lugar.lugar + ' (cod.' + lugar.codigoPostal + ')'}"
+              			/>
+				</select>				
 	    	<br>
 	    	<div class="text-center">
 	    		<button type="submit" name="action" value="permisoDiario" class="btn btn-secondary btn-lg">Permiso por un d&iacute;a</button>
 				<button type="submit" name="action" value="permisoPeriodo" class="btn btn-warning btn-lg">Permiso Prolongado</button>
 			</div>
-	    	</div>
+	    	
 		</form>
 		</div>
 	    <div class="d-none col-md-4 d-md-block bg-info">

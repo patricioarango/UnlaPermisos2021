@@ -24,13 +24,13 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column(name = "username", unique = true, nullable = false, length = 15)
+	@Column(name = "username", unique = true, nullable = false, length = 255)
 	private String username;
 
-	@Column(name = "password", nullable = false, length = 8)
+	@Column(name = "password", nullable = false, length = 255)
 	private String password;
 
-	@Column(name = "email", nullable = false, length = 50)
+	@Column(name = "email", nullable = false, length = 255)
 	private String email;
 
 

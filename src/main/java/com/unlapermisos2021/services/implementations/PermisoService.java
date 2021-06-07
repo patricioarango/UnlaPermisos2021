@@ -27,7 +27,7 @@ public class PermisoService implements IPermisoService{
 	}
 	
 	@Override
-	public PermisoModel findById(int id) {
+	public PermisoModel getByIdPermiso(int id) {
 		Permiso permiso = permisoRepo.getByIdPermiso(id);
 		PermisoModel permisoModel = new PermisoModel(); 
 		if(permiso != null) permisoModel = permisoConverter.entityToModel(permiso);

@@ -40,10 +40,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/").permitAll()
 		.antMatchers("/login").permitAll()
 		.antMatchers("/permiso/**").permitAll()
-		/*.antMatchers("/permiso/ver_permiso_diario/*").permitAll()
-		.antMatchers("/permiso/ver_permiso_periodo/*").permitAll()
-		.antMatchers("/permiso/nuevo/*").permitAll()
-		.antMatchers("/permiso/guardar").permitAll()*/
 		.antMatchers("/home/*").hasAnyAuthority("ADMINISTRADOR","AUDITOR")
 		.antMatchers("/usuarios/listar").hasAnyAuthority("ADMINISTRADOR","AUDITOR")
 		.antMatchers("/roles/listar").hasAnyAuthority("ADMINISTRADOR","AUDITOR")
@@ -54,7 +50,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()
-		//.loginPage("/login")
 		.defaultSuccessUrl("/home/entrar",true)
 		.usernameParameter("username")
 		.passwordParameter("password");

@@ -51,4 +51,9 @@ public class PermisoDiarioModel extends PermisoModel{
 			return false;
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + "[motivo: "+ this.motivo + "]";
+	}
 }

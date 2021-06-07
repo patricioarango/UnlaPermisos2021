@@ -17,11 +17,11 @@ public class PermisoConverter {
 	private PersonaConverter personaConverter;
 	
 	public PermisoModel entityToModel(Permiso permiso) {
-		return new PermisoModel(personaConverter.entityToModel(permiso.getPedido()),lugarConverter.entityToModel(permiso.getDesde()),lugarConverter.entityToModel(permiso.getHasta()),permiso.getFecha());
+		return new PermisoModel(permiso.getIdPermiso(),personaConverter.entityToModel(permiso.getPedido()),lugarConverter.entityToModel(permiso.getDesde()),lugarConverter.entityToModel(permiso.getHasta()),permiso.getFecha());
 	}
 	
 	public Permiso modelToEntity(PermisoModel permiso) {
-		return new Permiso(personaConverter.modelToEntity(permiso.getPedido()),lugarConverter.modelToEntity(permiso.getDesde()),lugarConverter.modelToEntity(permiso.getHasta()),
+		return new Permiso(permiso.getIdPermiso(),personaConverter.modelToEntity(permiso.getPedido()),lugarConverter.modelToEntity(permiso.getDesde()),lugarConverter.modelToEntity(permiso.getHasta()),
 				permiso.getFecha());
 	}
 }

@@ -1,12 +1,14 @@
 package com.unlapermisos2021.models;
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class PermisoModel {
 
 	private int idPermiso;
 
 	private PersonaModel pedido;
-
+	
 	private LocalDate fecha;
 	private LugarModel desde;
     private LugarModel hasta;
@@ -70,5 +72,8 @@ public class PermisoModel {
 		this.hasta = hasta;
 	}
 
-
+	@Override
+	public String toString() {
+		return "[idPermiso: "+ this.idPermiso + " fecha: " + this.fecha + "lugar: " + this.getDesde() +  "]";
+	}
 }

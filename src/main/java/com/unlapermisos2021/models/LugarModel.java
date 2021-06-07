@@ -58,7 +58,7 @@ public class LugarModel {
 
 	@Override
 	public String toString() {
-		return "[idLugar: "+ this.idLugar + "lugar: " + this.getLugar() + " CodigoPostal: " + this.getCodigoPostal() + "]";
+		return "[idLugar: "+ this.idLugar + ", lugar: " + this.getLugar() + " , codigoPostal: " + this.getCodigoPostal() + "]";
 	}
 
 }
