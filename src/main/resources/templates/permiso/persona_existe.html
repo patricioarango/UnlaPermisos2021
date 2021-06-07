@@ -1,7 +1,7 @@
 <html lang="en"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>UnLa Permisos - Error 403</title>
+    <title>UnLa Permisos | Grupo 11</title>
     <!-- Bootstrap core CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 	<!-- Favicons -->
@@ -51,7 +51,8 @@
 		</table>
 		</div>
 		<div th:if="${#lists.isEmpty(permisosDiarios)}">
-		<h1 class="h3 display-3 vertical-center23">TU DNI ya se encuentra registrado</h1>
+		<h1 class="h3 display-4 vertical-center23">TU DNI ya se encuentra registrado</h1>
+		<h1 class="display-6 vertical-center23" th:text="${'Hola, ' + persona.nombrePersona + ' ' + persona.apellidoPersona + '!'}"></h1>
 		<h3 class="white-text vertical-center23">(sin permisos activos)</h3>
 			<a class="vertical-center23 btn btn-secondary" th:href="@{/permiso/nuevo/}+${persona.idPersona}" href="">Sacar permiso Diario</a>
 			<a class="vertical-center23 btn btn-secondary" th:href="@{/permiso/nuevo/}+${persona.idPersona}" href="">Sacar permiso para Vacaciones</a>

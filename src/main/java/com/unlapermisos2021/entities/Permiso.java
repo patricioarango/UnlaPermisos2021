@@ -1,10 +1,6 @@
 package com.unlapermisos2021.entities;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -50,27 +44,18 @@ public class Permiso {
 		super();
 	}
 
-
 	public Permiso(int idPermiso) {
 		super();
 		this.idPermiso = idPermiso;
 	}
 	
-	public Permiso(int idPermiso,Persona persona,LocalDate fecha) {
-		super();
-		this.idPermiso = idPermiso;
-		this.pedido = persona;
-		this.fecha = fecha;
-	}
-
-
 	public Permiso(Persona persona,LocalDate fecha) {
 		super();
 		this.pedido = persona;
 		this.fecha = fecha;
 	}
-	
-	public Permiso(int idPermiso, Persona persona, Lugar desde, Lugar hasta, LocalDate fecha) {
+
+	public Permiso(int idPermiso,Persona persona, Lugar desde, Lugar hasta, LocalDate fecha) {
 		super();
 		this.idPermiso = idPermiso;
 		this.pedido = persona;
@@ -78,11 +63,11 @@ public class Permiso {
 		this.desde = desde;
 		this.hasta = hasta;
 	}
-
-	public Permiso(int idPermiso, Persona persona, Lugar desde, Lugar hasta) {
+	
+	public Permiso(Persona persona, Lugar desde, Lugar hasta, LocalDate fecha) {
 		super();
-		this.idPermiso = idPermiso;
 		this.pedido = persona;
+		this.fecha = fecha;
 		this.desde = desde;
 		this.hasta = hasta;
 	}

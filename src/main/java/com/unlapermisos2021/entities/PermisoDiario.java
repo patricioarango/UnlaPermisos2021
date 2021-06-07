@@ -19,20 +19,21 @@ public class PermisoDiario extends Permiso{
 
 	}
 
-	public PermisoDiario(int idPermiso, Persona pedido, Lugar desde, Lugar hasta, LocalDate fecha,String motivo) {
-		super(idPermiso, pedido, desde, hasta, fecha);
+	public PermisoDiario(int idPermiso,Persona pedido, Lugar desde, Lugar hasta,LocalDate fecha,String motivo) {
+		super(idPermiso,pedido, desde, hasta,fecha);
 		this.motivo = motivo;
 	}
-
-	public PermisoDiario(int idPermiso, Persona pedido, Lugar desde, Lugar hasta) {
-		super(idPermiso, pedido, desde, hasta);
+	
+	public PermisoDiario(Persona pedido, Lugar desde, Lugar hasta,LocalDate fecha,String motivo) {
+		super(pedido, desde, hasta,fecha);
+		this.motivo = motivo;
 	}
 	
-	public PermisoDiario(int idPermiso,String motivo) {
+	public PermisoDiario(int idPermiso, String motivo) {
 		super(idPermiso);
 		this.motivo = motivo;
 	}
-	
+		
 	public String getMotivo() {
 		return motivo;
 	}

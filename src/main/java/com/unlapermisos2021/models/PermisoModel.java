@@ -1,8 +1,5 @@
 package com.unlapermisos2021.models;
-
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 public class PermisoModel {
 
@@ -21,37 +18,22 @@ public class PermisoModel {
 		super();
 		this.idPermiso=idPermiso;
 	}
-	
+
 	public PermisoModel(int idPermiso,PersonaModel pedido, LugarModel desde, LugarModel hasta, LocalDate fecha) {
-		super();
-		this.idPermiso=idPermiso;
+		this.idPermiso = idPermiso;
+		this.pedido = pedido;
+		this.fecha = fecha;
+		this.desde = desde;
+		this.hasta = hasta;
+	}
+	
+	public PermisoModel(PersonaModel pedido, LugarModel desde, LugarModel hasta, LocalDate fecha) {
 		this.pedido = pedido;
 		this.fecha = fecha;
 		this.desde = desde;
 		this.hasta = hasta;
 	}
 
-	public PermisoModel(int idPermiso,PersonaModel pedido,LocalDate fecha) {
-		super();
-		this.idPermiso=idPermiso;
-		this.pedido = pedido;
-		this.fecha = fecha;
-	}
-
-	public PermisoModel(int idPermiso,PersonaModel pedido,LugarModel desde, LugarModel hasta) {
-		super();
-		this.idPermiso=idPermiso;
-		this.pedido = pedido;
-		this.desde = desde;
-		this.hasta = hasta;
-	}
-	
-	public PermisoModel(PersonaModel pedido,LocalDate fecha) {
-		super();
-		this.pedido = pedido;
-		this.fecha = fecha;
-	}
-	
 	public int getIdPermiso() {
 		return idPermiso;
 	}

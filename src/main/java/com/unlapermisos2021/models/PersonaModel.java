@@ -68,7 +68,7 @@ public class PersonaModel {
 
 	@Override
 	public String toString() {
-		return "[nombre: " + this.getNombrePersona() + " dni: " + this.getDniPersona() + "]";
+		return "[idPersona: "+ this.idPersona +" nombre: " + this.getNombrePersona() + " dni: " + this.getDniPersona() + "]";
 	}
 
 	

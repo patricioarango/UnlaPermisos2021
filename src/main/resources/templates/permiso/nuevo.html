@@ -1,7 +1,7 @@
 <html lang="en"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>UnLa Permisos - Error 403</title>
+    <title>UnLa Permisos | Grupo 11</title>
     <!-- Bootstrap core CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 	<!-- Favicons -->
@@ -24,37 +24,36 @@
 		}
     </style>
   </head>
+  <header th:insert="fragments/navbar_publico"></header>
  <body class="bg-primary">
-<main>
   <div class="container">
   <div class="row">
-    <div class="col-8 text-white vertical-center23">
-	<form method="post" th:action="@{/permiso/guardar/}" role="form" autocomplete="off">
-  <input type="hidden" th:object="${permiso}"/>
-  <input type="hidden" th:field="${permiso.idPermiso}"/>
-  <div th:object="${desde}">
-	  <div class="col-auto">
-	    <label class="form-label">Desde Lugar</label>
-	    <input type="text" th:field="${desde.nombreLugar}" class="form-control" required>
-	    <label class="form-label">Desde Codigo Postal</label>
-	    <input type="text" th:field="${desde.codigoPostal}" class="form-control" required>
-	    <div th:object="${hasta}">
-    		<label class="form-label">Hasta Lugar</label>
-    		<input type="text" th:field="${hasta.nombreLugar}" class="form-control" required>
-    		<label class="form-label">Hasta Codigo Postal</label>
-    		<input type="text" th:field="${hasta.codigoPostal}" class="form-control" required><br>
-    		<button type="submit" name="action" value="permisoDiario" class="btn btn-secondary">Permiso por un d&iacute;a</button>
-			<button type="submit" name="action" value="permisoPeriodo" class="btn btn-secondary">Permiso Prolongado</button>
-  		</div>
-	  </div>
-  </div>
-</form>
+  
+    <div class="col-8 text-white mt-5">
+    	<h1 class="h3 display-5 mt-5">Datos necesarios para el permiso</h1>
+		<form method="post" th:action="@{/permiso/guardar/}"  role="form" autocomplete="off">
+  		  <div class="col-auto mt-5">
+  		  	<input type="hidden" th:field="${persona.idPersona}"/>
+		    <label class="form-label">Desde Lugar</label>
+	    	<input type="text" name="lugar" th:value="${desde.lugar}" class="form-control" required>
+	    	<label class="form-label">Desde Codigo Postal</label>
+	    	<input type="text" name="codigoPostal" th:value="${desde.codigoPostal}" class="form-control" required>
+	    	 <label class="form-label">Hasta Lugar</label>
+	    	<input type="text" name="lugar" th:value="${hasta.lugar}" class="form-control" required>
+	    	<label class="form-label">Hasta Codigo Postal</label>
+	    	<input type="text" name="codigoPostal" th:value="${hasta.codigoPostal}" class="form-control" required>
+	    	<br>
+	    	<div class="text-center">
+	    		<button type="submit" name="action" value="permisoDiario" class="btn btn-secondary btn-lg">Permiso por un d&iacute;a</button>
+				<button type="submit" name="action" value="permisoPeriodo" class="btn btn-warning btn-lg">Permiso Prolongado</button>
+			</div>
+	    	</div>
+		</form>
+		</div>
+	    <div class="d-none col-md-4 d-md-block bg-info">
+	      <img src="https://1.bp.blogspot.com/-2XbNMce8bSo/WTl3xpGhnVI/AAAAAAAABeg/LwJhpLipjXAPsr2R_xJQ6mRnZSlV74DoQCLcB/s1600/machine1_2.gif" class="img-fluid vertical-center img-circle shadow p-3 mb-5" />
+	    </div>
     </div>
-    <div class="d-none col-md-4 d-md-block bg-info">
-      <img src="https://1.bp.blogspot.com/-2XbNMce8bSo/WTl3xpGhnVI/AAAAAAAABeg/LwJhpLipjXAPsr2R_xJQ6mRnZSlV74DoQCLcB/s1600/machine1_2.gif" class="img-fluid vertical-center img-circle shadow p-3 mb-5" />
-    </div>
-  </div>
 </div>
-</main>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body></html>

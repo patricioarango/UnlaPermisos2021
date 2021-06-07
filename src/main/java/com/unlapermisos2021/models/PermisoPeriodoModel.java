@@ -14,8 +14,8 @@ public class PermisoPeriodoModel extends PermisoModel{
 	public PermisoPeriodoModel() {
 	}
 
-	public PermisoPeriodoModel(int idPermiso,PersonaModel pedido,LugarModel desde, LugarModel hasta, LocalDate fecha,int cantDias, boolean vacaciones, Rodado rodado) {
-		super(idPermiso,pedido,desde,hasta,fecha);
+	public PermisoPeriodoModel(PersonaModel pedido,LugarModel desde, LugarModel hasta, LocalDate fecha,int cantDias, boolean vacaciones, Rodado rodado) {
+		super(pedido,desde,hasta,fecha);
 		this.cantDias = cantDias;
 		this.vacaciones = vacaciones;
 		this.rodado = rodado;

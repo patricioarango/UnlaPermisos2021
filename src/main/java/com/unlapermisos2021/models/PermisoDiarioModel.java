@@ -1,7 +1,5 @@
 package com.unlapermisos2021.models;
-
 import java.time.LocalDate;
-import java.util.Set;
 
 public class PermisoDiarioModel extends PermisoModel{
 
@@ -12,19 +10,15 @@ public class PermisoDiarioModel extends PermisoModel{
 	}
 
 	public PermisoDiarioModel(int idPermiso,PersonaModel pedido, LugarModel desde, LugarModel hasta, LocalDate fecha, String motivo) {
-		super(idPermiso,pedido, desde,hasta, fecha);
+		super(idPermiso,pedido,desde,hasta,fecha);
 		this.motivo = motivo;
 	}
 	
-	public PermisoDiarioModel(int idPermiso,PersonaModel pedido, LugarModel desde, LugarModel hasta) {
-		super(idPermiso,pedido, desde,hasta);
-	}
-	
-	public PermisoDiarioModel(int idPermiso,String motivo) {
-		super(idPermiso);
+	public PermisoDiarioModel(PersonaModel pedido, LugarModel desde, LugarModel hasta, LocalDate fecha, String motivo) {
+		super(pedido,desde,hasta,fecha);
 		this.motivo = motivo;
 	}
-	
+		
 	public String getMotivo() {
 		return motivo;
 	}

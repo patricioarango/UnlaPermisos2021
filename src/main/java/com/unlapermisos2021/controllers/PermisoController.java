@@ -2,6 +2,7 @@ package com.unlapermisos2021.controllers;
 
 import java.time.LocalDate;
 import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.unlapermisos2021.entities.PermisoDiario;
 import com.unlapermisos2021.helpers.ViewRoutesHelper;
 import com.unlapermisos2021.models.LugarModel;
 import com.unlapermisos2021.models.PermisoDiarioModel;
 import com.unlapermisos2021.models.PermisoModel;
 import com.unlapermisos2021.models.PersonaModel;
+import com.unlapermisos2021.services.ILugarService;
 import com.unlapermisos2021.services.IPermisoDiarioService;
 import com.unlapermisos2021.services.IPermisoService;
 import com.unlapermisos2021.services.IPersonaService;
@@ -41,6 +44,10 @@ public class PermisoController {
 	
 	@Autowired 
 	private IPermisoService permisoService;
+	
+	
+	@Autowired 
+	private ILugarService lugarService;
 	
 	@GetMapping("")
 	public ModelAndView index(Model model) {
@@ -83,6 +90,21 @@ public class PermisoController {
 		return mav;
 	}
 	
+	@GetMapping("/permiso/nuevo/{idPersona}")
+	public ModelAndView nuevo(@PathVariable int idPersona, Model model) {
+		ModelAndView mav;
+		PersonaModel persona =  personaService.findByIdPersona(idPersona);
+		if(persona == null) mav = new ModelAndView();
+		mav = new ModelAndView(ViewRoutesHelper.PERMISO_NUEVO);
+		LocalDate fechaPrevia = LocalDate.now();
+		LugarModel desde = new LugarModel();
+		LugarModel hasta = new LugarModel();
+		mav.addObject("persona", persona);
+		mav.addObject("desde", desde);
+		mav.addObject("hasta", hasta);
+        return mav;
+	}
+	
 	@GetMapping("/permiso/ingresar_persona")
 	public ModelAndView ingresar_persona(Model model) {
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.PERMISO_LLENAR_PERSONA);
@@ -99,7 +121,7 @@ public class PermisoController {
 		personaService.guardar(persona);
 		mav.addObject("persona", persona);
 		LocalDate fechaPrevia = LocalDate.now();
-		PermisoModel permiso = new PermisoModel(persona,fechaPrevia);
+		PermisoModel permiso = new PermisoModel();
 		PermisoModel permisoDB = permisoService.guardar(permiso);
 		mav.addObject("permiso", permisoDB);
 		LugarModel desde = new LugarModel();
@@ -109,47 +131,39 @@ public class PermisoController {
 		return mav;
 	}
 	
-	@GetMapping("/permiso/nuevo/{idPersona}")
-	public ModelAndView nuevo(@PathVariable int idPersona, Model model) {
-		ModelAndView mav;
-		PersonaModel persona =  personaService.findByIdPersona(idPersona);
-		if(persona == null) mav = new ModelAndView();
-		mav = new ModelAndView(ViewRoutesHelper.PERMISO_NUEVO);
-		LocalDate fechaPrevia = LocalDate.now();
-		PermisoModel permiso = new PermisoModel(persona,fechaPrevia);
-		PermisoModel permisoDB = permisoService.guardar(permiso);
-		logger.info(String.valueOf(permisoDB.getIdPermiso()));
-		mav.addObject("permiso", permisoDB);
-		LugarModel desde = new LugarModel();
-		LugarModel hasta = new LugarModel();
-        model.addAttribute("desde", desde);
-        model.addAttribute("hasta", hasta);
-        return mav;
-	}
-	
 	@RequestMapping(value = "/permiso/guardar", method = RequestMethod.POST,params="action=permisoDiario")
-	public ModelAndView permisoDiario(Model model,@ModelAttribute("desde") LugarModel desde,@ModelAttribute("hasta") LugarModel hasta,@ModelAttribute("permiso") PermisoModel permiso) {
-		PermisoModel permisoM = permisoService.findById(permiso.getIdPermiso());
-		PermisoModel permisoDB = permisoService.guardar(permiso);
-		//permisoDiarioService.guardar(permisoDiario);
-		ModelAndView mav = new ModelAndView(ViewRoutesHelper.PERMISO_NUEVO_DIARIO);
-		mav.addObject("permisoDiario", permisoDB);
+	public ModelAndView guardar(Model model,@ModelAttribute("persona") PersonaModel persona,@ModelAttribute("desde") LugarModel desde,@ModelAttribute("hasta") LugarModel hasta) {
+		ModelAndView mav;
+		//chequeamos la persona, si no existe, afuera
+		PersonaModel personaDB =  personaService.findByIdPersona(persona.getIdPersona());
+		if(personaDB == null) mav = new ModelAndView();
+		mav = new ModelAndView(ViewRoutesHelper.PERMISO_NUEVO_DIARIO);
+		PermisoDiario permisoDiario = new PermisoDiario();
+		mav.addObject("desdeF", desde);
+		mav.addObject("hastaF", hasta);
+		mav.addObject("persona", persona);
+		mav.addObject("permisoDiario", permisoDiario);
         return mav;
 	}
 	
 	@PostMapping("/permiso/guardar_permiso_diario")
-	public String permisoDiario(@ModelAttribute("permisoDiario") PermisoModel permisoDiario) {
-		logger.info(String.valueOf(permisoDiario.getIdPermiso()));
-		
-		//PermisoDiarioModel permisoDB = permisoDiarioService.traerPorId(6);
-		/*PermisoDiarioModel permisoDiario = new PermisoDiarioModel();
-		permisoDiario.setLugares(permiso.getLugares());
-		permisoDiario.setPedido(permiso.getPedido());
-		LocalDate fecha = LocalDate.of(2021,06,05);
-		permisoDiario.setFecha(fecha);
-		PermisoDiarioModel permisoDB = permisoDiarioService.guardar(permisoDiario);*/
-		return "redirect:/permisos/ver/" + permisoDiario.getIdPermiso();
-		
+	public String guardar_permiso_diario(@ModelAttribute("permisoDiario") PermisoDiarioModel permisoDiario,@ModelAttribute("persona") PersonaModel persona,@ModelAttribute("desdeF") LugarModel desdeF,@ModelAttribute("hastaF") LugarModel hastaF) {
+		//chequeamos la persona, si no existe, afuera
+		PersonaModel personaDB =  personaService.findByIdPersona(persona.getIdPersona());
+		if(personaDB == null) return "redirect:/permiso/nuevo/" + persona.getIdPersona();
+		PermisoDiarioModel permisoDiarioDB = new PermisoDiarioModel();
+		logger.info(desdeF.toString());
+		LugarModel desdeDB = lugarService.guardar(desdeF);
+		logger.info(desdeDB.toString());
+		LugarModel hastaDB = lugarService.guardar(hastaF);
+		permisoDiarioDB.setDesde(desdeDB);
+		permisoDiarioDB.setHasta(hastaDB);
+		permisoDiarioDB.setPedido(personaDB);
+		LocalDate fecha = LocalDate.now();
+		permisoDiarioDB.setFecha(fecha);
+		permisoDiarioDB.setMotivo(permisoDiario.getMotivo());
+		PermisoDiarioModel permisoDF = permisoDiarioService.guardar(permisoDiarioDB);
+		return "redirect:/permiso/ver_permiso_diario/" + permisoDF.getIdPermiso();
 	}
 	
 	@RequestMapping(value = "/permiso/guardar_permiso_periodo", method = RequestMethod.POST, params = "permisoPeriodo")

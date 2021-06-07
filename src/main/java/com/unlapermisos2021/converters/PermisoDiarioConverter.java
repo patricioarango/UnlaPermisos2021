@@ -19,10 +19,10 @@ public class PermisoDiarioConverter {
 	
 	
 	public PermisoDiarioModel entityToModel(PermisoDiario permisoDiario) {
-		return new PermisoDiarioModel(permisoDiario.getIdPermiso(),permisoDiario.getMotivo());
+		return new PermisoDiarioModel(permisoDiario.getIdPermiso(),personaConverter.entityToModel(permisoDiario.getPedido()),lugarConverter.entityToModel(permisoDiario.getDesde()),lugarConverter.entityToModel(permisoDiario.getHasta()),permisoDiario.getFecha(),permisoDiario.getMotivo());
 	}
 
-	public PermisoDiario modelToEntity (PermisoDiarioModel permisoDiarioModel) {
-		return new PermisoDiario(permisoDiarioModel.getIdPermiso(),permisoDiarioModel.getMotivo());
+	public PermisoDiario modelToEntity(PermisoDiarioModel permisoDiario) {
+		return new PermisoDiario(permisoDiario.getIdPermiso(),personaConverter.modelToEntity(permisoDiario.getPedido()),lugarConverter.modelToEntity(permisoDiario.getDesde()),lugarConverter.modelToEntity(permisoDiario.getHasta()),permisoDiario.getFecha(),permisoDiario.getMotivo());
 	}
 }	
