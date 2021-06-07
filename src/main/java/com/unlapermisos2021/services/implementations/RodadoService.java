@@ -1,5 +1,9 @@
 package com.unlapermisos2021.services.implementations;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -25,4 +29,12 @@ public class RodadoService implements IRodadoService{
 		return rodadoConverter.entityToModel(rodadoDB);
 	}
 
+	public Set<RodadoModel> getAll(){
+		Set<RodadoModel> aux = new HashSet<>();
+		List<Rodado> rodados = rodadoRepo.findAll();
+		for(Rodado r : rodados) {
+			aux.add(rodadoConverter.entityToModel(r));
+		}
+		return aux;
+	}
 }

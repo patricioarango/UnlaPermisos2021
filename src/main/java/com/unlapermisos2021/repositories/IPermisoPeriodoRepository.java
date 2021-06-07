@@ -19,4 +19,7 @@ public interface IPermisoPeriodoRepository extends JpaRepository<PermisoPeriodo,
 	@Query("SELECT p from PermisoPeriodo p inner join fetch p.pedido pe where persona_id = (:idPersona)")
 	public Set<PermisoPeriodo> getAllPorIdPersona(int idPersona);
 	public PermisoPeriodo getByIdPermiso(int idPermiso);
+	
+	@Query("SELECT pp FROM PermisoPeriodo pp INNER JOIN pp.rodado WHERE pp.rodado.idRodado = (:idRodado)")
+	public Set<PermisoPeriodo> findByRodado(int idRodado);
 }

@@ -10,4 +10,5 @@ public interface IPermisoPeriodoService {
 	public Set<PermisoPeriodoModel> buscarPermisoPeriodosActivosPorIdPersona(int idPersona);
 	public PermisoPeriodoModel guardar(PermisoPeriodoModel permiso);
 	public PermisoPeriodoModel findByIdPermiso(int idPermiso);
+	public Set<PermisoPeriodoModel> getAllPorIdRodado(int idRodado);
 }

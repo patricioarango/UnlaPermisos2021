@@ -62,4 +62,13 @@ public class PermisoPeriodoService implements IPermisoPeriodoService{
 		return permisoDB;
 	}
 
+	@Override
+	public Set<PermisoPeriodoModel> getAllPorIdRodado(int idRodado){
+		Set<PermisoPeriodoModel> aux = new HashSet<>();
+		Set<PermisoPeriodo> permisos = permisoPeriodoRepo.findByRodado(idRodado);
+		for (PermisoPeriodo p : permisos) {
+			aux.add(permisoPeriodoConverter.entityToModel(p));
+		}
+		return aux;
+	}
 }

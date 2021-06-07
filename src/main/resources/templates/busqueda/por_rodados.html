@@ -1,0 +1,32 @@
+   <div class="row" th:insert="fragments/header">
+   </div>
+   <br>
+   <div class="container">
+   	<div class="row">
+	    <div class="col-8">
+	        <h1>B&uacute;squeda Por Rodados</h1>
+	    </div>
+    <hr>
+	</div>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>idRodado</th>
+			<th>Dominio</th>
+			<th>Veh&iacute;culo</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="rodado:${rodados}">
+  			<td th:text="${rodado.idRodado}"></td>
+            <td th:text="${rodado.dominio}"></td>
+            <td th:text="${rodado.vehiculo}"></td>
+			<td>
+				<a th:href="@{/busqueda_permisos/rodado/}+${rodado.idRodado}" href="" role="button" class="btn btn-outline-primary" th:classappend="${session.SessionRol == 'AUDITOR'}? mostrar : d-none">VER PERMISOS ASOCIADOS</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>

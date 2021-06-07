@@ -20,8 +20,10 @@ public class ViewRoutesHelper {
 	public static final String PERMISO_VER_DIARIO = "/permiso/ver_permiso";
 	public static final String PERMISO_VER_PERIODO = "/permiso/ver_permiso_periodo";
 	public static final String PERMISO_NUEVO = "/permiso/nuevo";
-	
 	public static final String PERMISO_NUEVO_DIARIO = "/permiso/form_permisodiario";
 	public static final String PERMISO_NUEVO_PERIODO = "/permiso/form_permisoperiodo";
+	
+	public static final String BUSQUEDA_RODADOS = "/busqueda/por_rodados";
+	public static final String BUSQUEDA_RODADO_PERMISOS = "/busqueda/rodados_permisos";
 	
 }

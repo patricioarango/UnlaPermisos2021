@@ -47,6 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/usuarios/modificar").hasAuthority("ADMINISTRADOR")
 		.antMatchers("/roles/nuevo").hasAuthority("ADMINISTRADOR")
 		.antMatchers("/roles/modificar").hasAuthority("ADMINISTRADOR")
+		.antMatchers("/busqueda_permisos/por_rodados").hasAuthority("AUDITOR")
+		.antMatchers("/busqueda_permisos/rodado/*").hasAuthority("AUDITOR")
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()
