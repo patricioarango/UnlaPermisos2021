@@ -31,13 +31,15 @@
     <div class="col-8 text-white ">
 		
 		<h1 class="h3 display-3 vertical-center23">Tipo de Permiso: Per&iacute;odo</h1>
-		<h1 class="vertical-center23" th:text="${'Otorgado a: ' + permisoDiario.pedido.nombrePersona + ' ' + permisoDiario.pedido.apellidoPersona}"></h1>
-		<h3 class="vertical-center23" th:text="${'DNI: '+ permisoDiario.pedido.dniPersona}"></h3>
-		<h3 class="vertical-center23" th:text="${'Desde: '+ permisoDiario.desde.lugar + ' (cod.pos.: ' + permisoDiario.desde.codigoPostal + ')'}"></h3>
-		<h3 class="vertical-center23" th:text="${'Hasta: '+ permisoDiario.hasta.lugar + ' (cod.pos.: ' + permisoDiario.hasta.codigoPostal + ')'}"></h3>
-		
-		<h3 class="vertical-center23" th:text="${'Valido: '+ permisoDiario.fecha}"></h3>	
-		<a class="vertical-center23 btn btn-warning" target="_blank" th:href="@{https://patricioarango.github.io/permiso_periodo.html(nombre=${permisoDiario.pedido.nombrePersona},apellido=${permisoDiario.pedido.apellidoPersona},desde=${permisoDiario.desde.lugar},fecha=${permisoDiario.fecha},hasta=${permisoDiario.hasta.lugar},dni=${permisoDiario.pedido.dniPersona})}">Ver online en GitHub Pages</a>
+		<h1 class="vertical-center23" th:text="${'Otorgado a: ' + permisoPeriodo.pedido.nombrePersona + ' ' + permisoPeriodo.pedido.apellidoPersona}"></h1>
+		<h3 class="vertical-center23" th:text="${'DNI: '+ permisoPeriodo.pedido.dniPersona}"></h3>
+		<h3 class="vertical-center23" th:text="${'Desde: '+ permisoPeriodo.desde.lugar + ' (cod.pos.: ' + permisoPeriodo.desde.codigoPostal + ')'}"></h3>
+		<h3 class="vertical-center23" th:text="${'Hasta: '+ permisoPeriodo.hasta.lugar + ' (cod.pos.: ' + permisoPeriodo.hasta.codigoPostal + ')'}"></h3>
+		<h3 class="vertical-center23" th:text="${'V&aacute;lido Desde: '+ permisoPeriodo.fecha}"></h3>
+		<h3 class="vertical-center23" th:text="${'V&aacute;lido Hasta: '+permisoPeriodo.fecha.plusDays(permisoPeriodo.cantDias-1)}"></h3>
+		<h3 class="vertical-center23" th:text="${'Rodado DOMINIO: '+permisoPeriodo.rodado.dominio}"></h3>
+		<h3 class="vertical-center23" th:text="${'Rodado Veh&iacute;culo: '+permisoPeriodo.rodado.vehiculo}"></h3>	
+		<a class="vertical-center23 btn btn-warning" target="_blank" th:href="@{https://patricioarango.github.io/permiso_periodo.html(nombre=${permisoPeriodo.pedido.nombrePersona},apellido=${permisoPeriodo.pedido.apellidoPersona},desde=${permisoPeriodo.desde.lugar},fecha_inicio=${permisoPeriodo.fecha},fecha_fin=${permisoPeriodo.fecha.plusDays(permisoPeriodo.cantDias-1)},hasta=${permisoPeriodo.hasta.lugar},dni=${permisoPeriodo.pedido.dniPersona},vehiculo=${permisoPeriodo.rodado.vehiculo},dominio=${permisoPeriodo.rodado.dominio})}">Ver online en GitHub Pages</a>
 		<a class="vertical-center23 btn btn-secondary" href="/">Volver al Inicio</a>
     </div>
     <div class="d-none col-md-4 d-md-block bg-info">

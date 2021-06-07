@@ -36,11 +36,11 @@
   		<input type="hidden" th:field="${persona.idPersona}"/>
   		<input type="hidden" th:field="${permiso.idPermiso}"/>
 		<label class="vertical-center23">Cantidad de d&iacute;as</label>
-		<input type="number" th:object="${permisoPeriodo}" name="cantDias" class="form-control" id="cantDias" autofocus required>
+		<input type="number" th:object="${permisoPeriodo}" name="cantDias" min="1" class="form-control" id="cantDias" autofocus required>
 		<label>¿Son Vacaciones?</label>
 		
-		<label>Dominio del veh&iacute;culo</label>
-		<input type="text" th:object="${rodado}" name="dominio" class="form-control" id="dominio"  required>
+		<label>Dominio del veh&iacute;culo formato:AAA999</label>
+		<input type="text" th:object="${rodado}" pattern="[a-zA-Z]{3}[0-9{3}]+" minlength="6" maxlength="6" name="dominio" class="form-control" id="dominio"  required>
 		<label>Marca y modelo</label>
 		<input type="text" th:object="${rodado}" name="vehiculo" class="form-control" id="vehiculo"  required><br><br>
 		<br>

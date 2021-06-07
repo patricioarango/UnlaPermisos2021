@@ -85,7 +85,7 @@ public class PermisoController {
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.PERMISO_VER_PERIODO);
 		PermisoPeriodoModel permisoDiario = permisoPeriodoService.findByIdPermiso(idPermiso);
 		logger.info(permisoDiario.toString());
-        mav.addObject("permisoDiario", permisoDiario);
+        mav.addObject("permisoPeriodo", permisoDiario);
         return mav;
 	}
 	
@@ -103,6 +103,10 @@ public class PermisoController {
 			Set<PermisoDiarioModel> permisosDiarios = permisoDiarioService.buscarPermisoDiarioActivoPorIdPersona(personaDB.getIdPersona());
 			if(permisosDiarios.size() > 0) {
 				model.addAttribute("permisosDiarios",permisosDiarios);
+			}
+			Set<PermisoPeriodoModel> permisosPeriodos = permisoPeriodoService.buscarPermisoPeriodosActivosPorIdPersona(personaDB.getIdPersona());
+			if(permisosPeriodos.size() > 0) {
+				model.addAttribute("permisosPeriodos",permisosPeriodos);
 			}
 		} 
 		return mav;
