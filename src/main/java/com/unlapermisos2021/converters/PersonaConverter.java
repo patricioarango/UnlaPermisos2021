@@ -1,7 +1,5 @@
 package com.unlapermisos2021.converters;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Component;
 
 import com.unlapermisos2021.entities.Persona;

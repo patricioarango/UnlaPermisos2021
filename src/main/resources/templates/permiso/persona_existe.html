@@ -32,23 +32,28 @@
   
     <div class="col-8 text-white">
     	<div th:if="${not#lists.isEmpty(permisosDiarios)}">
-    	<h3>Ya existen permisos activos para tu DNI</h3><br>
-		<table class="table table-hover vertical-center23">
+    	<h3 class="vertical-center23">Ya existen permisos Diarios activos para tu DNI</h3><br>
+		<table class="table table-hover vertical-center23 bg-light">
 			<thead>
 				<tr>
+					<th>Persona</th>
+					<th>DNI</th>
 					<th>Fecha</th>
 					<th>Motivo</th>
-					<th>Ver</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="permisoDiario:${permisosDiarios}">
+		  			<td th:text="${permisoDiario.pedido.nombrePersona + ' ' + permisoDiario.pedido.apellidoPersona}"></td>
+		  			<td th:text="${permisoDiario.pedido.dniPersona}"></td>
 		  			<td th:text="${permisoDiario.fecha}"></td>
 		            <td th:text="${permisoDiario.motivo}"></td>
-		            <td><a th:href="@{/permiso/ver_permiso_diario/}+${permisoDiario.idPermiso}" href="" role="button" class="btn btn-light">ver</a></td>
+		            <td><a th:href="@{/permiso/ver_permiso_diario/}+${permisoDiario.idPermiso}" href="" role="button" class="btn btn-info">ver</a></td>
 				</tr>
 			</tbody>
 		</table>
+			<a class="vertical-center23 btn btn-secondary" href="/">Volver al Inicio</a>
 		</div>
 		<div th:if="${#lists.isEmpty(permisosDiarios)}">
 		<h1 class="h3 display-4 vertical-center23">TU DNI ya se encuentra registrado</h1>

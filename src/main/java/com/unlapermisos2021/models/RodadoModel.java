@@ -57,4 +57,8 @@ public class RodadoModel {
 		this.permisoPeriodos = permisoPeriodos;
 	}
 
+	@Override
+	public String toString() {
+		return "[idRodado: "+ this.idRodado + ", dominio: " + this.getDominio() + " , vehiculo: " + this.getVehiculo() + "]";
+	}
 }

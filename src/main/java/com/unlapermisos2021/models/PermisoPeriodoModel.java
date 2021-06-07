@@ -1,21 +1,20 @@
 package com.unlapermisos2021.models;
 
 import java.time.LocalDate;
-import com.unlapermisos2021.entities.Rodado;
 
 public class PermisoPeriodoModel extends PermisoModel{
 
 	private int cantDias;
 
-	private boolean vacaciones ;
+	private boolean vacaciones;
 
-	private Rodado rodado;
+	private RodadoModel rodado;
 
 	public PermisoPeriodoModel() {
 	}
 
-	public PermisoPeriodoModel(PersonaModel pedido,LugarModel desde, LugarModel hasta, LocalDate fecha,int cantDias, boolean vacaciones, Rodado rodado) {
-		super(pedido,desde,hasta,fecha);
+	public PermisoPeriodoModel(int idPermiso,PersonaModel pedido,LugarModel desde, LugarModel hasta, LocalDate fecha,int cantDias, boolean vacaciones, RodadoModel rodado) {
+		super(idPermiso,pedido,desde,hasta,fecha);
 		this.cantDias = cantDias;
 		this.vacaciones = vacaciones;
 		this.rodado = rodado;
@@ -37,11 +36,11 @@ public class PermisoPeriodoModel extends PermisoModel{
 		this.vacaciones = vacaciones;
 	}
 
-	public Rodado getRodado() {
+	public RodadoModel getRodado() {
 		return rodado;
 	}
 
-	public void setRodado(Rodado rodado) {
+	public void setRodado(RodadoModel rodado) {
 		this.rodado = rodado;
 	}
 

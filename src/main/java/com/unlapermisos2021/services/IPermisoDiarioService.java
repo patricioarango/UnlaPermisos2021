@@ -3,7 +3,6 @@ package com.unlapermisos2021.services;
 import java.time.LocalDate;
 import java.util.Set;
 import com.unlapermisos2021.models.PermisoDiarioModel;
-import com.unlapermisos2021.models.PermisoModel;
 
 public interface IPermisoDiarioService {
 

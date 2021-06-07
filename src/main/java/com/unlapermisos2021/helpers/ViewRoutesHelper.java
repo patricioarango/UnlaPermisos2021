@@ -16,7 +16,9 @@ public class ViewRoutesHelper {
 	public static final String PERMISO_DNI = "/permiso/ingresar_dni";
 	public static final String PERMISO_PERSONA_EXISTE = "/permiso/persona_existe";
 	public static final String PERMISO_LLENAR_PERSONA = "/permiso/form_persona";
-	public static final String PERMISO_VER = "/permiso/ver_permiso";
+	public static final String PERMISO_LLENAR_RODADO = "/permiso/form_rodado";
+	public static final String PERMISO_VER_DIARIO = "/permiso/ver_permiso";
+	public static final String PERMISO_VER_PERIODO = "/permiso/ver_permiso_periodo";
 	public static final String PERMISO_NUEVO = "/permiso/nuevo";
 	
 	public static final String PERMISO_NUEVO_DIARIO = "/permiso/form_permisodiario";

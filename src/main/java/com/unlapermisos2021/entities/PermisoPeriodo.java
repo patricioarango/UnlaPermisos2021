@@ -18,7 +18,7 @@ public class PermisoPeriodo extends Permiso{
 	private int cantDias;
 
 	@Column(name="vacaciones")
-	private boolean vacaciones ;
+	private boolean vacaciones;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="idRodado", nullable=false)
@@ -27,8 +27,8 @@ public class PermisoPeriodo extends Permiso{
 	public PermisoPeriodo() {
 	}
 
-	public PermisoPeriodo(Persona pedido, Lugar desde, Lugar hasta, LocalDate fecha,int cantDias, boolean vacaciones, Rodado rodado) {
-		super(pedido, desde,hasta, fecha);
+	public PermisoPeriodo(int idPermiso,Persona pedido, Lugar desde, Lugar hasta, LocalDate fecha,int cantDias, boolean vacaciones, Rodado rodado) {
+		super(idPermiso,pedido, desde,hasta, fecha);
 		this.cantDias = cantDias;
 		this.vacaciones = vacaciones;
 		this.rodado = rodado;

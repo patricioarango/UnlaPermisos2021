@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.unlapermisos2021.converters.PermisoConverter;
 import com.unlapermisos2021.entities.Permiso;
-import com.unlapermisos2021.entities.Usuario;
 import com.unlapermisos2021.models.PermisoModel;
 import com.unlapermisos2021.repositories.IPermisoRepository;
 import com.unlapermisos2021.services.IPermisoService;
