@@ -49,6 +49,17 @@ public class PermisoPeriodoService implements IPermisoPeriodoService{
 		}
 		return aux;
 	}	
+
+	@Override 
+	public Set<PermisoPeriodoModel> buscarPermisoPeriodosPorIdPersona(int idPersona){
+		Set<PermisoPeriodoModel> aux = new HashSet<>();
+		LocalDate fecha = LocalDate.now();
+		Set<PermisoPeriodo> permisos = permisoPeriodoRepo.getAllPorIdPersona(idPersona);
+		for (PermisoPeriodo p : permisos) {
+			aux.add(permisoPeriodoConverter.entityToModel(p));
+		}
+		return aux;
+	}
 	
 	@Override
 	public PermisoPeriodoModel guardar(PermisoPeriodoModel permiso) {

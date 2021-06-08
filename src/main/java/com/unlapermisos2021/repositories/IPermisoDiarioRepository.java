@@ -19,5 +19,8 @@ public interface IPermisoDiarioRepository extends JpaRepository<PermisoDiario, S
 	@Query("SELECT p from PermisoDiario p where persona_id = (:idPersona) and DATE(fecha) = DATE(now())")
 	public Set<PermisoDiario> findAllActivosByIdPersona(int idPersona);
 	
+	@Query("SELECT p from PermisoDiario p where persona_id = (:idPersona)")
+	public Set<PermisoDiario> findTodosByIdPersona(int idPersona);
+	
 	public PermisoDiario getByIdPermiso(int idPermiso);
 }

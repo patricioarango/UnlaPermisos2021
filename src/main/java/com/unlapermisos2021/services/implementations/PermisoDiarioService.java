@@ -43,6 +43,15 @@ public class PermisoDiarioService implements IPermisoDiarioService{
 		return aux;
 	}
 
+	public Set<PermisoDiarioModel> buscarPermisoDiarioPorIdPersona(int idPersona){
+		Set<PermisoDiarioModel> aux = new HashSet<>();
+		Set<PermisoDiario> permisos = permisoDiarioRepo.findTodosByIdPersona(idPersona);
+		for (PermisoDiario p : permisos) {
+			aux.add(permisoDiarioConverter.entityToModel(p));
+		}
+		return aux;
+	}
+	
 	public PermisoDiarioModel guardar(PermisoDiarioModel permiso) {
 		PermisoDiario permisoD =  permisoDiarioRepo.save(permisoDiarioConverter.modelToEntity(permiso));
 		return permisoDiarioConverter.entityToModel(permisoD);

@@ -1,5 +1,7 @@
 package com.unlapermisos2021.services.implementations;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -37,5 +39,10 @@ public class PersonaService implements IPersonaService{
 	public PersonaModel guardar(PersonaModel persona) {
 		Persona personaSaved = personaRepo.save(personaConverter.modelToEntity(persona));
 		return personaConverter.entityToModel(personaSaved);
+	}
+	
+	@Override
+	public List<Persona> getAll(){
+		return personaRepo.findAll();
 	}
 }
