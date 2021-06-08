@@ -2,6 +2,7 @@ package com.unlapermisos2021.services.implementations;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,8 @@ public class PermisoPeriodoService implements IPermisoPeriodoService{
 	public Set<PermisoPeriodoModel> buscarPermisoPeriodosActivos(){
 		LocalDate fecha = LocalDate.now();
 		Set<PermisoPeriodoModel> aux = new HashSet<>();
-		Set<PermisoPeriodo> permisos = permisoPeriodoRepo.getAll(fecha,"INTERVAL cantdias DAY");
+		//Set<PermisoPeriodo> permisos = permisoPeriodoRepo.getAll(fecha,"INTERVAL cantdias DAY");
+		List<PermisoPeriodo> permisos = permisoPeriodoRepo.findAll();
 		for (PermisoPeriodo p : permisos) {
 			aux.add(permisoPeriodoConverter.entityToModel(p));
 		}
@@ -79,6 +81,19 @@ public class PermisoPeriodoService implements IPermisoPeriodoService{
 		Set<PermisoPeriodo> permisos = permisoPeriodoRepo.findByRodado(idRodado);
 		for (PermisoPeriodo p : permisos) {
 			aux.add(permisoPeriodoConverter.entityToModel(p));
+		}
+		return aux;
+	}
+	
+	public Set<PermisoPeriodoModel> buscarPermisoPeriodosEntreFechas(LocalDate desde,LocalDate hasta){
+		Set<PermisoPeriodoModel> aux = new HashSet<>();
+		List<PermisoPeriodo> permisos = permisoPeriodoRepo.findAll();
+		for (PermisoPeriodo p : permisos) {
+			LocalDate fechaFin = p.getFecha().plusDays(p.getCantDias()-1);
+			aux.add(permisoPeriodoConverter.entityToModel(p));
+			if (desde.isAfter(p.getFecha()) && hasta.isBefore(fechaFin)) {
+				aux.add(permisoPeriodoConverter.entityToModel(p));
+			}
 		}
 		return aux;
 	}

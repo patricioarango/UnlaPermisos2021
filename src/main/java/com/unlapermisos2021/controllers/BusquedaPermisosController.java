@@ -1,17 +1,27 @@
 package com.unlapermisos2021.controllers;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
+
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.unlapermisos2021.helpers.ViewRoutesHelper;
+import com.unlapermisos2021.models.PermisoDiarioModel;
+import com.unlapermisos2021.models.PermisoPeriodoModel;
 import com.unlapermisos2021.services.IPermisoDiarioService;
 import com.unlapermisos2021.services.IPermisoPeriodoService;
 import com.unlapermisos2021.services.IPermisoService;
@@ -21,6 +31,7 @@ import com.unlapermisos2021.services.IRodadoService;
 @Controller
 @RequestMapping("/busqueda_permisos")
 public class BusquedaPermisosController {
+	Logger logger = LoggerFactory.getLogger(PermisoController.class);
 	
 	@Autowired 
 	private IPermisoPeriodoService permisoPeriodoService;
@@ -91,6 +102,29 @@ public class BusquedaPermisosController {
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.BUSQUEDA_PERSONAS_PERMISOS);
 		model.addAttribute("permisosDiarios", permisoDiarioService.buscarPermisoDiarioPorIdPersona(id));
 		model.addAttribute("permisosPeriodos", permisoPeriodoService.buscarPermisoPeriodosPorIdPersona(id));
+        return mav;
+	}
+	
+	@GetMapping("/activos_entre_fechas")
+	public ModelAndView activos_entre_fechas(@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate desde,@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate hasta, Authentication auth, Model model,HttpSession session) {
+		if(auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMINISTRADOR"))) {
+			session.setAttribute("SessionRol", "ADMINISTRADOR");
+		}
+		if(auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("AUDITOR"))) {
+			session.setAttribute("SessionRol", "AUDITOR");
+		}
+		
+		ModelAndView mav = new ModelAndView(ViewRoutesHelper.BUSQUEDA_ACTIVOS_ENTRE_FECHAS);
+		if(desde != null && hasta != null) {
+			Set<PermisoDiarioModel> permisosDiarios = permisoDiarioService.buscarPermisoDiarioEntreFechas(desde,hasta);
+			if(permisosDiarios.size() > 0) {
+				model.addAttribute("permisosDiarios",permisosDiarios);
+			}
+			Set<PermisoPeriodoModel> permisosPeriodos = permisoPeriodoService.buscarPermisoPeriodosEntreFechas(desde,hasta);
+			if(permisosPeriodos.size() > 0) {
+				model.addAttribute("permisosPeriodos",permisosPeriodos);
+			}
+		}
         return mav;
 	}
 }

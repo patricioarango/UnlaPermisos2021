@@ -23,4 +23,7 @@ public interface IPermisoDiarioRepository extends JpaRepository<PermisoDiario, S
 	public Set<PermisoDiario> findTodosByIdPersona(int idPersona);
 	
 	public PermisoDiario getByIdPermiso(int idPermiso);
+	
+	@Query("SELECT p from PermisoDiario p where fecha BETWEEN (:desde) AND (:hasta) ")
+	public Set<PermisoDiario> findEntreFechas(LocalDate desde,LocalDate hasta);
 }

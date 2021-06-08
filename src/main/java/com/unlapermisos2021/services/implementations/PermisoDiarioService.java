@@ -61,4 +61,13 @@ public class PermisoDiarioService implements IPermisoDiarioService{
 		PermisoDiarioModel permiso = permisoDiarioConverter.entityToModel(permisoDiarioRepo.getByIdPermiso(idPermiso));
 		return permiso;
 	}
+	
+	public Set<PermisoDiarioModel> buscarPermisoDiarioEntreFechas(LocalDate desde,LocalDate hasta){
+		Set<PermisoDiarioModel> aux = new HashSet<>();
+		Set<PermisoDiario> permisos = permisoDiarioRepo.findEntreFechas(desde,hasta);
+		for (PermisoDiario p : permisos) {
+			aux.add(permisoDiarioConverter.entityToModel(p));
+		}
+		return aux;
+	}
 }

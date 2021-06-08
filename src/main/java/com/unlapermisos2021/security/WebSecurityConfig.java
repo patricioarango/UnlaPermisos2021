@@ -51,6 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/busqueda_permisos/por_personas").hasAuthority("AUDITOR")
 		.antMatchers("/busqueda_permisos/rodado/*").hasAuthority("AUDITOR")
 		.antMatchers("/busqueda_permisos/persona/*").hasAuthority("AUDITOR")
+		.antMatchers("/busqueda_permisos/activos_entre_fechas/*").hasAuthority("AUDITOR")
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()
