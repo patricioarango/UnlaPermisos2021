@@ -64,6 +64,7 @@
 					<th>Rodado VEHICULO</th>
 					<th>Desde</th>
 					<th>Hasta</th>
+					<th>¿Son Vacaciones?</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -78,6 +79,7 @@
 		            <td th:text="${permisoPeriodo.rodado.vehiculo}"></td>
 		            <td th:text="${permisoPeriodo.desde.lugar}"></td>
 		            <td th:text="${permisoPeriodo.hasta.lugar}"></td>
+		            <td th:text="${(permisoPeriodo.vacaciones) ? 'Si' : 'No' }">
 		            <td><a th:href="@{/permiso/ver_permiso_periodo/}+${permisoPeriodo.idPermiso}" href="" role="button" class="btn btn-info">ver</a></td>
 				</tr>
 			</tbody>

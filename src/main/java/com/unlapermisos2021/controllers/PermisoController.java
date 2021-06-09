@@ -281,7 +281,6 @@ public class PermisoController {
 		RodadoModel rodadoDB = rodadoService.guardar(rodado);
 		permisoPeriodo.setPedido(personaDB);
 		permisoPeriodo.setRodado(rodadoDB);
-		permisoPeriodo.setVacaciones(true);
 		permisoPeriodo.setDesde(permisoDB.getDesde());
 		permisoPeriodo.setHasta(permisoDB.getHasta());
 		permisoPeriodo.setFecha(permisoDB.getFecha());

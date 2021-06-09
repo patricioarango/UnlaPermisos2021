@@ -39,6 +39,8 @@
 					<th>Persona</th>
 					<th>DNI</th>
 					<th>Fecha</th>
+					<th>Desde</th>
+					<th>Hasta</th>
 					<th>Motivo</th>
 					<th></th>
 				</tr>
@@ -48,6 +50,9 @@
 		  			<td th:text="${permisoDiario.pedido.nombrePersona + ' ' + permisoDiario.pedido.apellidoPersona}"></td>
 		  			<td th:text="${permisoDiario.pedido.dniPersona}"></td>
 		  			<td th:text="${permisoDiario.fecha}"></td>
+		            <td th:text="${permisoDiario.motivo}"></td>
+		            <td th:text="${permisoDiario.desde.lugar}"></td>
+		            <td th:text="${permisoDiario.hasta.lugar}"></td>		  			
 		            <td th:text="${permisoDiario.motivo}"></td>
 		            <td><a th:href="@{/permiso/ver_permiso_diario/}+${permisoDiario.idPermiso}" href="" role="button" class="btn btn-info">ver</a></td>
 				</tr>
@@ -65,7 +70,10 @@
 					<th>Fecha Inicio</th>
 					<th>cant. Dias</th>
 					<th>Fecha Fin</th>
-					<th>Rodado</th>
+					<th>DOMINIO</th>
+					<th>VEHICULO</th>
+					<th>Lugar desde</th>
+					<th>Lugar hasta</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -77,6 +85,9 @@
 		  			<td th:text="${permisoPeriodo.cantDias}"></td>
 		  			<td th:text="${permisoPeriodo.fecha.plusDays(permisoPeriodo.cantDias-1)}"></td>
 		            <td th:text="${permisoPeriodo.rodado.dominio}"></td>
+		            <td th:text="${permisoPeriodo.rodado.vehiculo}"></td>
+		            <td th:text="${permisoPeriodo.desde.lugar}"></td>
+		            <td th:text="${permisoPeriodo.hasta.lugar}"></td>
 		            <td><a th:href="@{/permiso/ver_permiso_periodo/}+${permisoPeriodo.idPermiso}" href="" role="button" class="btn btn-info">ver</a></td>
 				</tr>
 			</tbody>
