@@ -28,9 +28,8 @@
 <main>
   <div class="container">
   <div class="row text-white">
-    <div class="col-8 text-white ">
-		
-		<h1 class="h3 display-3 vertical-center23">Tipo de Permiso: Diario</h1>
+    <div class="col-5 text-white ">
+		<h1 class="h3 display-3 vertical-center23">Tipo Permiso: Diario</h1>
 		<h1 class="vertical-center23" th:text="${'Otorgado a: ' + permisoDiario.pedido.nombrePersona + ' ' + permisoDiario.pedido.apellidoPersona}"></h1>
 		<h3 class="vertical-center23" th:text="${'DNI: '+ permisoDiario.pedido.dniPersona}"></h3>
 		<h3 class="vertical-center23" th:text="${'Desde: '+ permisoDiario.desde.lugar + ' (cod.pos.: ' + permisoDiario.desde.codigoPostal + ')'}"></h3>
@@ -38,7 +37,11 @@
 		<h3 class="vertical-center23" th:text="${'Motivo: '+ permisoDiario.motivo}"></h3>
 		<h3 class="vertical-center23" th:text="${'V&aacute;lido: '+ permisoDiario.fecha}"></h3>	
 		<a class="vertical-center23 btn btn-warning" target="_blank" th:href="@{https://patricioarango.github.io/permiso_diario.html(nombre=${permisoDiario.pedido.nombrePersona},apellido=${permisoDiario.pedido.apellidoPersona},desde=${permisoDiario.desde.lugar},fecha=${permisoDiario.fecha},hasta=${permisoDiario.hasta.lugar},motivo=${permisoDiario.motivo},dni=${permisoDiario.pedido.dniPersona})}">Ver online en GitHub Pages</a>
+		<a class="vertical-center23 btn btn-danger" target="_blank" th:href="${imagen}">Ver QR</a>
 		<a class="vertical-center23 btn btn-secondary" href="/">Volver al Inicio</a>
+    </div>
+    <div class="col-3">
+    	<img class="vertical-center23 img-fluid" th:src="${imagen}" />
     </div>
     <div class="d-none col-md-4 d-md-block bg-info">
       <img src="https://1.bp.blogspot.com/-2XbNMce8bSo/WTl3xpGhnVI/AAAAAAAABeg/LwJhpLipjXAPsr2R_xJQ6mRnZSlV74DoQCLcB/s1600/machine1_2.gif" class="img-fluid vertical-center img-circle shadow p-3 mb-5" />

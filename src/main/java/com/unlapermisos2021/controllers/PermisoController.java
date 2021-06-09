@@ -1,5 +1,14 @@
 package com.unlapermisos2021.controllers;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -17,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.unlapermisos2021.helpers.ViewRoutesHelper;
 import com.unlapermisos2021.models.PermisoDiarioModel;
 import com.unlapermisos2021.models.PermisoModel;
@@ -30,6 +38,9 @@ import com.unlapermisos2021.services.IPermisoPeriodoService;
 import com.unlapermisos2021.services.IPermisoService;
 import com.unlapermisos2021.services.IPersonaService;
 import com.unlapermisos2021.services.IRodadoService;
+
+import net.glxn.qrgen.core.image.ImageType;
+import net.glxn.qrgen.javase.QRCode;
 
 
 @Controller
@@ -73,9 +84,26 @@ public class PermisoController {
 
 	@GetMapping("/permiso/ver_permiso_diario/{idPermiso}")
 	public ModelAndView ver(@PathVariable int idPermiso, Model model) {
+		ByteArrayOutputStream bout = QRCode.from("www.google.com").to(ImageType.PNG).withSize(250, 250).stream();
+		String filename = "qrcode-" + String.valueOf(idPermiso)  + ".png";
+		String ruta = "src/main/resources/static/images/";
+		String imagenVista = "/images/" + filename;
+		String rutacompleta = ruta + filename;
+		try {
+            OutputStream out = new FileOutputStream(rutacompleta);
+            bout.writeTo(out);
+            out.flush();
+            out.close();
+
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.PERMISO_VER_DIARIO);
 		PermisoDiarioModel permisoDiario = permisoDiarioService.findByIdPermiso(idPermiso);
-        mav.addObject("permisoDiario", permisoDiario);
+		mav.addObject("permisoDiario", permisoDiario);
+        mav.addObject("imagen", imagenVista);
         return mav;
 	}
 
