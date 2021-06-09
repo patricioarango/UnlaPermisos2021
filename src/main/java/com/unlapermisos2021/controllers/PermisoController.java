@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +32,7 @@ import com.unlapermisos2021.services.IPermisoPeriodoService;
 import com.unlapermisos2021.services.IPermisoService;
 import com.unlapermisos2021.services.IPersonaService;
 import com.unlapermisos2021.services.IRodadoService;
+import com.unlapermisos2021.util.GeneradorQR;
 
 
 @Controller
@@ -215,4 +218,13 @@ public class PermisoController {
 		PermisoPeriodoModel permisoDF = permisoPeriodoService.guardar(permisoPeriodo);
 		return "redirect:/permiso/ver_permiso_periodo/" + permisoDF.getIdPermiso();
 	}
+	
+	@GetMapping(value = "/generateQRCode/{width}/{height}/{codeText}")
+	public ResponseEntity<byte[]> generateQRCode(@PathVariable("codeText") String codeText, @PathVariable("width") int width, @PathVariable("height") int height)throws Exception
+	{
+		return ResponseEntity.status(HttpStatus.OK).body(GeneradorQR.getQRImage(codeText, width, height));
+	}
+	
+	
+	
 }

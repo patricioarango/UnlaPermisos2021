@@ -37,6 +37,7 @@
 		<h3 class="vertical-center23" th:text="${'Hasta: '+ permisoDiario.hasta.lugar + ' (cod.pos.: ' + permisoDiario.hasta.codigoPostal + ')'}"></h3>
 		<h3 class="vertical-center23" th:text="${'Motivo: '+ permisoDiario.motivo}"></h3>
 		<h3 class="vertical-center23" th:text="${'V&aacute;lido: '+ permisoDiario.fecha}"></h3>	
+		<img class="vertical-center23" th:src="@{'/generateQRCode/100/100/'+${'DNI: '+ permisoDiario.pedido.dniPersona}+${'Desde: '+ permisoDiario.desde.lugar + ' (cod.pos.: ' + permisoDiario.desde.codigoPostal + ')'}}">
 		<a class="vertical-center23 btn btn-warning" target="_blank" th:href="@{https://patricioarango.github.io/permiso_diario.html(nombre=${permisoDiario.pedido.nombrePersona},apellido=${permisoDiario.pedido.apellidoPersona},desde=${permisoDiario.desde.lugar},fecha=${permisoDiario.fecha},hasta=${permisoDiario.hasta.lugar},motivo=${permisoDiario.motivo},dni=${permisoDiario.pedido.dniPersona})}">Ver online en GitHub Pages</a>
 		<a class="vertical-center23 btn btn-secondary" href="/">Volver al Inicio</a>
     </div>
