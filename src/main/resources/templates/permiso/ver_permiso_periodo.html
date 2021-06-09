@@ -40,6 +40,7 @@
 		<h3 class="vertical-center23" th:text="${'Rodado DOMINIO: '+permisoPeriodo.rodado.dominio}"></h3>
 		<h3 class="vertical-center23" th:text="${'Rodado Veh&iacute;culo: '+permisoPeriodo.rodado.vehiculo}"></h3>	
 		<a class="vertical-center23 btn btn-warning" target="_blank" th:href="@{https://patricioarango.github.io/permiso_periodo.html(nombre=${permisoPeriodo.pedido.nombrePersona},apellido=${permisoPeriodo.pedido.apellidoPersona},desde=${permisoPeriodo.desde.lugar},fecha_inicio=${permisoPeriodo.fecha},fecha_fin=${permisoPeriodo.fecha.plusDays(permisoPeriodo.cantDias-1)},hasta=${permisoPeriodo.hasta.lugar},dni=${permisoPeriodo.pedido.dniPersona},vehiculo=${permisoPeriodo.rodado.vehiculo},dominio=${permisoPeriodo.rodado.dominio})}">Ver online en GitHub Pages</a>
+		<a class="vertical-center23 btn btn-danger" target="_blank" th:href="${imagen}">Ver QR</a>
 		<a class="vertical-center23 btn btn-secondary" href="/">Volver al Inicio</a>
     </div>
     <div class="d-none col-md-4 d-md-block bg-info">
