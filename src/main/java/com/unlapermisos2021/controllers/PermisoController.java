@@ -1,5 +1,14 @@
 package com.unlapermisos2021.controllers;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -17,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.unlapermisos2021.helpers.ViewRoutesHelper;
 import com.unlapermisos2021.models.PermisoDiarioModel;
 import com.unlapermisos2021.models.PermisoModel;
@@ -30,6 +38,9 @@ import com.unlapermisos2021.services.IPermisoPeriodoService;
 import com.unlapermisos2021.services.IPermisoService;
 import com.unlapermisos2021.services.IPersonaService;
 import com.unlapermisos2021.services.IRodadoService;
+
+import net.glxn.qrgen.core.image.ImageType;
+import net.glxn.qrgen.javase.QRCode;
 
 
 @Controller
@@ -73,19 +84,81 @@ public class PermisoController {
 
 	@GetMapping("/permiso/ver_permiso_diario/{idPermiso}")
 	public ModelAndView ver(@PathVariable int idPermiso, Model model) {
-		ModelAndView mav = new ModelAndView(ViewRoutesHelper.PERMISO_VER_DIARIO);
 		PermisoDiarioModel permisoDiario = permisoDiarioService.findByIdPermiso(idPermiso);
-		logger.info(permisoDiario.toString());
-        mav.addObject("permisoDiario", permisoDiario);
+		StringBuilder link_para_qr = new StringBuilder("https://patricioarango.github.io/permiso_diario.html"); 
+		link_para_qr.append("?nombre=" + permisoDiario.getPedido().getNombrePersona());
+		link_para_qr.append("&apellido=" + permisoDiario.getPedido().getApellidoPersona());
+		link_para_qr.append("&desde=" + permisoDiario.getDesde().getLugar());
+		link_para_qr.append("&hasta=" + permisoDiario.getHasta().getLugar());
+		link_para_qr.append("&motivo=" + permisoDiario.getMotivo());
+		link_para_qr.append("&dni=" + permisoDiario.getPedido().getDniPersona());
+		link_para_qr.append("&fecha=" + permisoDiario.getFecha().toString());
+
+		ByteArrayOutputStream bout = QRCode.from(link_para_qr.toString()).to(ImageType.PNG).withSize(250, 250).stream();
+		String filename = "qrcodeImg-" + String.valueOf(idPermiso)  + ".png";
+		String ruta = "src/main/resources/static/images/";
+		String imagenVista = "/images/" + filename;
+		String rutacompleta = ruta + filename;
+		try {
+			File f = new File(rutacompleta);
+            OutputStream out = new FileOutputStream(f);
+            bout.writeTo(out);
+            out.flush();
+            out.close();
+
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		StringBuilder link_para_qr_onthefly = new StringBuilder("/generador_qr?qrText="); 
+		String link_encodeado = link_para_qr.toString().replace('?', '@').replace('&', '#');
+		link_para_qr_onthefly.append(link_encodeado);
+		ModelAndView mav = new ModelAndView(ViewRoutesHelper.PERMISO_VER_DIARIO);
+		mav.addObject("permisoDiario", permisoDiario);
+        mav.addObject("imagen", imagenVista);
+        mav.addObject("link_qr", link_para_qr_onthefly.toString());
         return mav;
 	}
 
 	@GetMapping("/permiso/ver_permiso_periodo/{idPermiso}")
 	public ModelAndView ver_periodo(@PathVariable int idPermiso, Model model) {
-		ModelAndView mav = new ModelAndView(ViewRoutesHelper.PERMISO_VER_PERIODO);
 		PermisoPeriodoModel permisoDiario = permisoPeriodoService.findByIdPermiso(idPermiso);
-		logger.info(permisoDiario.toString());
+		StringBuilder link_para_qr = new StringBuilder("https://patricioarango.github.io/permiso_periodo.html"); 
+		link_para_qr.append("?nombre=" + permisoDiario.getPedido().getNombrePersona());
+		link_para_qr.append("&apellido=" + permisoDiario.getPedido().getApellidoPersona());
+		link_para_qr.append("&desde=" + permisoDiario.getDesde().getLugar());
+		link_para_qr.append("&hasta=" + permisoDiario.getHasta().getLugar());
+		link_para_qr.append("&fecha_inicio=" + permisoDiario.getFecha().toString());
+		link_para_qr.append("&fecha_fin=" + permisoDiario.getFecha().plusDays(permisoDiario.getCantDias() -1).toString());
+		link_para_qr.append("&dni=" + permisoDiario.getPedido().getDniPersona());
+		link_para_qr.append("&vehiculo=" + permisoDiario.getRodado().getVehiculo());
+		link_para_qr.append("&dominio=" + permisoDiario.getRodado().getDominio());
+
+		ByteArrayOutputStream bout = QRCode.from(link_para_qr.toString()).to(ImageType.PNG).withSize(250, 250).stream();
+		String filename = "qrcodeImg-" + String.valueOf(idPermiso)  + ".png";
+		String ruta = "src/main/resources/static/images/";
+		String imagenVista = "/images/" + filename;
+		String rutacompleta = ruta + filename;
+		try {
+			File f = new File(rutacompleta);
+            OutputStream out = new FileOutputStream(f);
+            bout.writeTo(out);
+            out.flush();
+            out.close();
+
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }		
+		StringBuilder link_para_qr_onthefly = new StringBuilder("/generador_qr?qrText="); 
+		String link_encodeado = link_para_qr.toString().replace('?', '@').replace('&', '#');
+		link_para_qr_onthefly.append(link_encodeado);
+		ModelAndView mav = new ModelAndView(ViewRoutesHelper.PERMISO_VER_PERIODO);
         mav.addObject("permisoPeriodo", permisoDiario);
+        mav.addObject("imagen", imagenVista);
+        mav.addObject("link_qr", link_para_qr_onthefly.toString());
         return mav;
 	}
 	

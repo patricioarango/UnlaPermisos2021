@@ -11,7 +11,7 @@ public interface IUsuarioService {
 	
 	public Usuario findById(long id);
 	
-	public List<UsuarioModel> getAllEnabled(int enabled);
+	public List<UsuarioModel> getAllEnabled();
 		
 	public UsuarioModel updateUser(UsuarioModel userModel);
 

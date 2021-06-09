@@ -43,7 +43,7 @@ public class UsuariosController {
 		}
 		
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.USUARIOS_LISTADO);
-		model.addAttribute("usuarios", userService.getAllEnabled(1));
+		model.addAttribute("usuarios", userService.getAllEnabled());
         return mav;
 	}
 	

@@ -28,7 +28,7 @@
 <main>
   <div class="container">
   <div class="row text-white">
-    <div class="col-8 text-white ">
+    <div class="col-5 text-white ">
 		
 		<h1 class="h3 display-3 vertical-center23">Tipo de Permiso: Per&iacute;odo</h1>
 		<h1 class="vertical-center23" th:text="${'Otorgado a: ' + permisoPeriodo.pedido.nombrePersona + ' ' + permisoPeriodo.pedido.apellidoPersona}"></h1>
@@ -42,6 +42,11 @@
 		<a class="vertical-center23 btn btn-warning" target="_blank" th:href="@{https://patricioarango.github.io/permiso_periodo.html(nombre=${permisoPeriodo.pedido.nombrePersona},apellido=${permisoPeriodo.pedido.apellidoPersona},desde=${permisoPeriodo.desde.lugar},fecha_inicio=${permisoPeriodo.fecha},fecha_fin=${permisoPeriodo.fecha.plusDays(permisoPeriodo.cantDias-1)},hasta=${permisoPeriodo.hasta.lugar},dni=${permisoPeriodo.pedido.dniPersona},vehiculo=${permisoPeriodo.rodado.vehiculo},dominio=${permisoPeriodo.rodado.dominio})}">Ver online en GitHub Pages</a>
 		<a class="vertical-center23 btn btn-secondary" href="/">Volver al Inicio</a>
     </div>
+    <div class="col-3">
+    	<img class="vertical-center23 img-fluid" th:src="${imagen}" />
+    	<a class="vertical-center23 btn btn-danger" target="_blank" th:href="${imagen}">Ver Imagen QR</a><br><br>
+    	<a class="vertical-center23 btn btn-success" target="_blank" th:href="${link_qr}">Generar QR onthefly</a>
+    </div>    
     <div class="d-none col-md-4 d-md-block bg-info">
       <img src="https://1.bp.blogspot.com/-2XbNMce8bSo/WTl3xpGhnVI/AAAAAAAABeg/LwJhpLipjXAPsr2R_xJQ6mRnZSlV74DoQCLcB/s1600/machine1_2.gif" class="img-fluid vertical-center img-circle shadow p-3 mb-5" />
     </div>

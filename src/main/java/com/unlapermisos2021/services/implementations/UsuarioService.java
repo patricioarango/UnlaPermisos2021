@@ -46,7 +46,7 @@ public class UsuarioService implements IUsuarioService{
 	}
 	
 	@Override
-	public List<UsuarioModel> getAllEnabled(int enabled) {
+	public List<UsuarioModel> getAllEnabled() {
 		List<UsuarioModel> usuarios = new ArrayList<>();
 		for(Usuario u : userRepo.findAllByEnabledTrue()){
 			usuarios.add(userConverter.entityToModel(u));
