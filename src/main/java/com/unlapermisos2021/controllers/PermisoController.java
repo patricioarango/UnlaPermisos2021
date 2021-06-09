@@ -75,7 +75,6 @@ public class PermisoController {
 	public ModelAndView ver(@PathVariable int idPermiso, Model model) {
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.PERMISO_VER_DIARIO);
 		PermisoDiarioModel permisoDiario = permisoDiarioService.findByIdPermiso(idPermiso);
-		logger.info(permisoDiario.toString());
         mav.addObject("permisoDiario", permisoDiario);
         return mav;
 	}

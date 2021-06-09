@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.unlapermisos2021.helpers.ViewRoutesHelper;
 import com.unlapermisos2021.models.PermisoDiarioModel;
 import com.unlapermisos2021.models.PermisoPeriodoModel;
+import com.unlapermisos2021.services.ILugarService;
 import com.unlapermisos2021.services.IPermisoDiarioService;
 import com.unlapermisos2021.services.IPermisoPeriodoService;
 import com.unlapermisos2021.services.IPermisoService;
@@ -41,6 +42,9 @@ public class BusquedaPermisosController {
 	
 	@Autowired 
 	private IPermisoService permisoService;
+	
+	@Autowired 
+	private ILugarService lugarService;
 	
 	@Autowired 
 	private IPersonaService personaService;
@@ -121,6 +125,33 @@ public class BusquedaPermisosController {
 				model.addAttribute("permisosDiarios",permisosDiarios);
 			}
 			Set<PermisoPeriodoModel> permisosPeriodos = permisoPeriodoService.buscarPermisoPeriodosEntreFechas(desde,hasta);
+			if(permisosPeriodos.size() > 0) {
+				model.addAttribute("permisosPeriodos",permisosPeriodos);
+			}
+		}
+        return mav;
+	}
+	
+	@GetMapping("/activos_entre_fechas_y_lugares")
+	public ModelAndView activos_entre_fechas_y_lugares(@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate desde,@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate hasta, @RequestParam(required=false,defaultValue = "0") int lugar_desde, @RequestParam(required=false,defaultValue = "0") int lugar_hasta,Authentication auth, Model model,HttpSession session) {
+		if(auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMINISTRADOR"))) {
+			session.setAttribute("SessionRol", "ADMINISTRADOR");
+		}
+		if(auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("AUDITOR"))) {
+			session.setAttribute("SessionRol", "AUDITOR");
+		}
+		
+		ModelAndView mav = new ModelAndView(ViewRoutesHelper.BUSQUEDA_ACTIVOS_ENTRE_FECHAS_Y_LUGARES);
+		model.addAttribute("lugares_desde",lugarService.getAll());
+		model.addAttribute("lugares_hasta",lugarService.getAll());
+		if(desde != null && hasta != null && lugar_desde > 0 && lugar_hasta > 0) {
+			logger.info("aca");
+			Set<PermisoDiarioModel> permisosDiarios = permisoDiarioService.buscarPermisoDiarioEntreFechasYLugares(desde,hasta,lugar_desde,lugar_hasta);
+			if(permisosDiarios.size() > 0) {
+				model.addAttribute("permisosDiarios",permisosDiarios);
+			}
+			Set<PermisoPeriodoModel> permisosPeriodos = permisoPeriodoService.buscarPermisoPeriodosEntreFechasYLugares(desde,hasta,lugar_desde,lugar_hasta);
+			logger.info(hasta.toString());
 			if(permisosPeriodos.size() > 0) {
 				model.addAttribute("permisosPeriodos",permisosPeriodos);
 			}

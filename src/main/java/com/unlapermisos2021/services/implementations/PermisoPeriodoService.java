@@ -90,8 +90,19 @@ public class PermisoPeriodoService implements IPermisoPeriodoService{
 		List<PermisoPeriodo> permisos = permisoPeriodoRepo.findAll();
 		for (PermisoPeriodo p : permisos) {
 			LocalDate fechaFin = p.getFecha().plusDays(p.getCantDias()-1);
-			aux.add(permisoPeriodoConverter.entityToModel(p));
-			if (desde.isAfter(p.getFecha()) && hasta.isBefore(fechaFin)) {
+			if (!desde.isAfter(p.getFecha()) && !hasta.isBefore(fechaFin)) {
+				aux.add(permisoPeriodoConverter.entityToModel(p));
+			}
+		}
+		return aux;
+	}
+	
+	public Set<PermisoPeriodoModel> buscarPermisoPeriodosEntreFechasYLugares(LocalDate desde,LocalDate hasta,int lugar_desde, int lugar_hasta){
+		Set<PermisoPeriodoModel> aux = new HashSet<>();
+		List<PermisoPeriodo> permisos = permisoPeriodoRepo.findAllPorLugares(lugar_desde,lugar_hasta);
+		for (PermisoPeriodo p : permisos) {
+			LocalDate fechaFin = p.getFecha().plusDays(p.getCantDias()-1);
+			if (!desde.isAfter(p.getFecha()) && !hasta.isBefore(fechaFin)) {
 				aux.add(permisoPeriodoConverter.entityToModel(p));
 			}
 		}

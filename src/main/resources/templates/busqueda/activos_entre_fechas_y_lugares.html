@@ -4,20 +4,42 @@
    <div class="container">
    	<div class="row">
 	    <div class="col-8">
-	        <h1>B&uacute;squeda de Permisos activos entre fechas</h1>
+	        <h1>B&uacute;squeda de Permisos activos entre fechas y Lugares</h1>
 	    </div>
     <hr>
 	</div>
 	<div class="row p-2">
-		<form method="get" action="/busqueda_permisos/activos_entre_fechas"  role="form" autocomplete="off">
+		<form method="get" action="/busqueda_permisos/activos_entre_fechas_y_lugares"  role="form" autocomplete="off">
 			<div class="input-group">
 			<span class="input-group-text">Desde</span>
 			<input type="date" class="form-control" th:value="${(param.desde != null)} ? ${param.desde}" name="desde" id="desde" required placeholder="desde" />
 			 <span class="input-group-text" style="border-left: 0; border-right: 0;">Hasta</span>
 			<input type="date"  class="form-control" th:value="${(param.desde != null)} ? ${param.hasta}" name="hasta" id="hasta" required placeholder="hasta" />
-			</div><br>
+			</div>
+			<br>
+			<div class="input-group">
+			<span class="input-group-text">Lugar Desde</span>
+			<select class="form-select" name="lugar_desde" required>
+		   		<option value="">Elegir Lugar Inicial</option>
+		   		<option th:each="lugar : ${lugares_desde}"
+              			th:value="${lugar.idLugar}" 
+              			th:text="${lugar.lugar + ' (cod.' + lugar.codigoPostal + ')'}"
+              			th:selected="${#numbers.formatInteger(lugar.idLugar,3) == #numbers.formatInteger(param.lugar_desde,3)}"
+              			/>
+			</select>
+			<span class="input-group-text" style="border-left: 0; border-right: 0;">Lugar Hasta</span>
+			<select class="form-select" name="lugar_hasta" required>
+		   		<option value="">Elegir Lugar Final</option>
+		   		<option th:each="lugarHasta : ${lugares_hasta}"
+		   				th:selected="${#numbers.formatInteger(lugarHasta.idLugar,3) == #numbers.formatInteger(param.lugar_hasta,3)}"
+              			th:value="${lugarHasta.idLugar}" 
+              			th:text="${lugarHasta.lugar + ' (cod.' + lugarHasta.codigoPostal + ')'}"
+              			/>
+			</select>
+			</div>
+			<br>
 			<button type="submit" name="action" value="1" class="btn btn-primary">BUSCAR</button>
-			<a href="/busqueda_permisos/activos_entre_fechas" class="btn btn-secondary">ELIMINAR FILTROS</a>
+			<a href="/busqueda_permisos/activos_entre_fechas_y_lugares" class="btn btn-secondary">ELIMINAR FILTROS</a>
 		</form>
 	</div>
 	<div th:if="${not#lists.isEmpty(permisosDiarios)}">
@@ -40,7 +62,7 @@
 		  			<td th:text="${permisoDiario.pedido.dniPersona}"></td>
 		  			<td th:text="${permisoDiario.fecha}"></td>
 		            <td th:text="${permisoDiario.motivo}"></td>
-		            <td th:text="${permisoDiario.desde.lugar}"></td>
+		           	<td th:text="${permisoDiario.desde.lugar}"></td>
 		            <td th:text="${permisoDiario.hasta.lugar}"></td>
 		            <td><a target="_blank" th:href="@{/permiso/ver_permiso_diario/}+${permisoDiario.idPermiso}" href="" role="button" class="btn btn-info">ver</a></td>
 				</tr>
@@ -61,7 +83,7 @@
 					<th>cant. Dias</th>
 					<th>Fecha Fin</th>
 					<th>Rodado DOMINIO</th>
-					<th>Rodado VEHICULO</th>
+					<th>Rodado VEHICULO</th>					
 					<th>Desde</th>
 					<th>Hasta</th>
 					<th></th>

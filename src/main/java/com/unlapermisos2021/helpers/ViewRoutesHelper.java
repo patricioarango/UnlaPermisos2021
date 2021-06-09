@@ -28,5 +28,6 @@ public class ViewRoutesHelper {
 	public static final String BUSQUEDA_PERSONAS = "/busqueda/por_personas";
 	public static final String BUSQUEDA_PERSONAS_PERMISOS = "/busqueda/personas_permisos";
 	public static final String BUSQUEDA_ACTIVOS_ENTRE_FECHAS = "/busqueda/activos_entre_fechas";
+	public static final String BUSQUEDA_ACTIVOS_ENTRE_FECHAS_Y_LUGARES = "/busqueda/activos_entre_fechas_y_lugares";
 	
 }

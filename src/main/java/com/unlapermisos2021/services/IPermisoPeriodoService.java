@@ -9,6 +9,7 @@ public interface IPermisoPeriodoService {
 	
 	public Set<PermisoPeriodoModel> buscarPermisoPeriodosActivos();
 	public Set<PermisoPeriodoModel> buscarPermisoPeriodosEntreFechas(LocalDate desde,LocalDate hasta);
+	public Set<PermisoPeriodoModel> buscarPermisoPeriodosEntreFechasYLugares(LocalDate desde,LocalDate hasta,int lugar_desde, int lugar_hasta);
 	public Set<PermisoPeriodoModel> buscarPermisoPeriodosActivosPorIdPersona(int idPersona);
 	public Set<PermisoPeriodoModel> buscarPermisoPeriodosPorIdPersona(int idPersona);
 	public PermisoPeriodoModel guardar(PermisoPeriodoModel permiso);

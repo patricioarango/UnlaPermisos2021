@@ -25,4 +25,7 @@ public interface IPermisoPeriodoRepository extends JpaRepository<PermisoPeriodo,
 	public Set<PermisoPeriodo> findByRodado(int idRodado);
 	
 	public List<PermisoPeriodo> findAll();
+	
+	@Query("SELECT p from PermisoPeriodo p INNER JOIN FETCH p.desde INNER JOIN FETCH p.hasta WHERE desde=(:lugar_desde) AND hasta=(:lugar_hasta) ")
+	public List<PermisoPeriodo> findAllPorLugares(int lugar_desde,int lugar_hasta);
 }
