@@ -8,7 +8,7 @@
 	        
 	    </div>
 	    <div class="col-4">
-	    	<button type="button" class="btn btn-primary" th:classappend="${session.SessionRol == 'AUDITOR'}? mostrar : d-none">Exportar PDF</button>
+	    	<a role="button" target="_blank" href="/roles/listar/?format=pdf" class="btn btn-primary" th:classappend="${session.SessionRol == 'AUDITOR'}? mostrar : d-none">Exportar PDF</a>
 	    	<a role="button" href="/roles/nuevo" class="btn btn-primary" th:classappend="${session.SessionRol == 'ADMINISTRADOR'}? mostrar : d-none">Crear Rol</a>
 	    </div>
     <hr>
