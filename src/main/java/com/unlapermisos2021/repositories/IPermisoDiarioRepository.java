@@ -24,7 +24,7 @@ public interface IPermisoDiarioRepository extends JpaRepository<PermisoDiario, S
 	
 	public PermisoDiario getByIdPermiso(int idPermiso);
 	
-	@Query("SELECT p from PermisoDiario p where fecha BETWEEN (:desde) AND (:hasta) ")
+	@Query("SELECT p from PermisoDiario p where fecha >= (:desde) AND fecha <= (:hasta) ")
 	public Set<PermisoDiario> findEntreFechas(LocalDate desde,LocalDate hasta);
 	
 	@Query("SELECT p from PermisoDiario p INNER JOIN FETCH p.desde INNER JOIN FETCH p.hasta WHERE fecha BETWEEN (:desde) AND (:hasta) AND (desde=(:lugar_desde) AND hasta=(:lugar_hasta) )")

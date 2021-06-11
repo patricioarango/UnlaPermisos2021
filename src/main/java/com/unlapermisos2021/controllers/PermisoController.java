@@ -111,13 +111,12 @@ public class PermisoController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-		StringBuilder link_para_qr_onthefly = new StringBuilder("/generador_qr?qrText="); 
-		String link_encodeado = link_para_qr.toString().replace('?', '@').replace('&', '#');
-		link_para_qr_onthefly.append(link_encodeado);
+		String link_para_qr_onthefly = "/generador_qr/qr_permiso_diario/" + idPermiso; 
+		
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.PERMISO_VER_DIARIO);
 		mav.addObject("permisoDiario", permisoDiario);
         mav.addObject("imagen", imagenVista);
-        mav.addObject("link_qr", link_para_qr_onthefly.toString());
+        mav.addObject("link_qr", link_para_qr_onthefly);
         return mav;
 	}
 
@@ -152,13 +151,11 @@ public class PermisoController {
         } catch (IOException e) {
             e.printStackTrace();
         }		
-		StringBuilder link_para_qr_onthefly = new StringBuilder("/generador_qr?qrText="); 
-		String link_encodeado = link_para_qr.toString().replace('?', '@').replace('&', '#');
-		link_para_qr_onthefly.append(link_encodeado);
+		String link_para_qr_onthefly = "/generador_qr/qr_permiso_periodo/" + idPermiso; 
 		ModelAndView mav = new ModelAndView(ViewRoutesHelper.PERMISO_VER_PERIODO);
         mav.addObject("permisoPeriodo", permisoDiario);
         mav.addObject("imagen", imagenVista);
-        mav.addObject("link_qr", link_para_qr_onthefly.toString());
+        mav.addObject("link_qr", link_para_qr_onthefly);
         return mav;
 	}
 	
